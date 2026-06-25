@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a0014;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0014;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7c3aed, #db2777, #f59e0b);
+  border-radius: 3px;
+}
+
+/* 3D Logo Styles */
+.logo-3d {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  background: linear-gradient(
+    135deg,
+    #ffd700 0%,
+    #fff8e7 20%,
+    #f59e0b 35%,
+    #fff 45%,
+    #db2777 55%,
+    #7c3aed 70%,
+    #ffd700 85%,
+    #fff8e7 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease infinite;
+  text-shadow: none;
+  filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.6)) drop-shadow(0 0 60px rgba(124, 58, 237, 0.4));
+  position: relative;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.shine-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: shineMove 3s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@keyframes shineMove {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Luxury card */
+.luxury-card {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(219, 39, 119, 0.05));
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.luxury-card:hover {
+  border-color: rgba(245, 158, 11, 0.6);
+  box-shadow: 0 20px 60px rgba(124, 58, 237, 0.3), 0 0 30px rgba(245, 158, 11, 0.2);
+  transform: translateY(-5px);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #ffd700, #f59e0b, #db2777, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gold gradient */
+.gold-gradient {
+  background: linear-gradient(135deg, #ffd700, #f59e0b, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Bubble */
+.bubble {
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(124, 58, 237, 0.3));
+  border: 1px solid rgba(255,255,255,0.4);
+  animation: floatBubble linear infinite;
+}
+
+@keyframes floatBubble {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+}
+
+/* CTA Button */
+.btn-luxury {
+  background: linear-gradient(135deg, #7c3aed, #db2777, #f59e0b);
+  background-size: 200% 200%;
+  border: none;
+  transition: all 0.4s ease;
+  animation: btnGradient 3s ease infinite;
+}
+
+@keyframes btnGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.btn-luxury:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(124, 58, 237, 0.5), 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+/* Section title */
+.section-title {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Offer banner */
+.offer-banner {
+  background: linear-gradient(135deg, #1a0033, #2d0052, #1a0033);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* Navbar glass */
+.navbar-glass {
+  background: rgba(10, 0, 20, 0.7);
+  backdrop-filter: blur(30px);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+/* Star rating */
+.stars {
+  color: #f59e0b;
+}
+
+/* Product card */
+.product-card {
+  background: linear-gradient(145deg, rgba(20, 0, 40, 0.9), rgba(40, 0, 80, 0.7));
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.product-card:hover {
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 25px 70px rgba(124, 58, 237, 0.4), 0 0 40px rgba(219, 39, 119, 0.2);
+  transform: translateY(-10px) scale(1.02);
+}
+
+/* Pulse ring */
+@keyframes pulseRing {
+  0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(245, 158, 11, 0); }
+  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+
+.pulse-ring {
+  animation: pulseRing 2s infinite;
+}
