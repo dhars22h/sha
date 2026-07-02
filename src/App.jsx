@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -8,6 +8,11 @@ import Reviews from './components/Reviews';
 import Brands from './components/Brands';
 import OfferBanner from './components/OfferBanner';
 import Footer from './components/Footer';
+import Collections from './components/Collections';
+import ProductDetails from './components/ProductDetails';
+import Contact from './components/Contact';
+import ReviewsPage from './components/ReviewsPage';
+import FAQPage from './components/FAQPage';
 
 // Global floating bubbles background
 const GlobalBubbles = () => {
@@ -119,6 +124,24 @@ const SectionDivider = () => (
 );
 
 function App() {
+  const [currentView, setCurrentView] = useState('home');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [cartCount, setCartCount] = useState(3);
+  const [activeProduct, setActiveProduct] = useState(null);
+
+  // When changing views, scroll to top
+  const navigateTo = (view) => {
+    setCurrentView(view);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleProductSelect = (product) => {
+    setActiveProduct(product);
+    setCurrentView('details');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="relative min-h-screen" style={{ background: '#0a0014' }}>
       {/* Global background bubbles */}
@@ -129,19 +152,75 @@ function App() {
 
       {/* Main content */}
       <div className="relative z-10">
-        <Navbar cartCount={3} />
-        <Hero />
-        <SectionDivider />
-        <Categories />
-        <SectionDivider />
-        <Products />
-        <SectionDivider />
-        <OfferBanner />
-        <SectionDivider />
-        <Reviews />
-        <SectionDivider />
-        <Brands />
-        <Footer />
+        <Navbar 
+          cartCount={cartCount} 
+          currentView={currentView}
+          setView={navigateTo}
+          setSelectedCategory={setSelectedCategory}
+          setSearchQuery={(query) => {
+            setSearchQuery(query);
+            if (query) {
+              setCurrentView('collections');
+            }
+          }}
+        />
+
+        {currentView === 'home' ? (
+          <>
+            <Hero setView={navigateTo} />
+            <SectionDivider />
+            <div id="categories-section">
+              <Categories setView={navigateTo} setSelectedCategory={setSelectedCategory} />
+            </div>
+            <SectionDivider />
+            <div id="products-section">
+              <Products 
+                setView={navigateTo} 
+                setSelectedCategory={setSelectedCategory} 
+                setSelectedProduct={handleProductSelect}
+              />
+            </div>
+            <SectionDivider />
+            <div id="offers-section">
+              <OfferBanner />
+            </div>
+            <SectionDivider />
+            <div id="reviews-section">
+              <Reviews />
+            </div>
+            <SectionDivider />
+            <div id="brands-section">
+              <Brands />
+            </div>
+          </>
+        ) : currentView === 'collections' ? (
+          <Collections 
+            initialCategory={selectedCategory} 
+            initialSearch={searchQuery}
+            setSelectedCategory={setSelectedCategory}
+            setSearchQuery={setSearchQuery}
+            cartCount={cartCount}
+            setCartCount={setCartCount}
+            setSelectedProduct={handleProductSelect}
+          />
+        ) : currentView === 'details' ? (
+          <ProductDetails 
+            product={activeProduct}
+            setView={navigateTo}
+            setSelectedProduct={handleProductSelect}
+            setCartCount={setCartCount}
+          />
+        ) : currentView === 'reviews' ? (
+          <ReviewsPage />
+        ) : currentView === 'faq' ? (
+          <FAQPage setView={navigateTo} />
+        ) : (
+          <Contact />
+        )}
+        
+        <div id="about-section">
+          <Footer setView={navigateTo} />
+        </div>
       </div>
 
       {/* Scroll to top */}

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { categories } from '../data/products';
 
-const CategoryCard = ({ category, index }) => (
+const CategoryCard = ({ category, index, onClick }) => (
   <motion.div
     className="luxury-card rounded-2xl p-6 text-center cursor-pointer group relative overflow-hidden"
     initial={{ opacity: 0, y: 40 }}
@@ -10,6 +10,7 @@ const CategoryCard = ({ category, index }) => (
     viewport={{ once: true }}
     transition={{ delay: index * 0.1 }}
     whileHover={{ y: -8, scale: 1.02 }}
+    onClick={onClick}
   >
     {/* Hover gradient */}
     <div
@@ -49,7 +50,7 @@ const CategoryCard = ({ category, index }) => (
   </motion.div>
 );
 
-const Categories = () => (
+const Categories = ({ setView, setSelectedCategory }) => (
   <section className="py-24 relative" style={{ background: 'rgba(10,0,20,0.9)' }}>
     <div
       className="absolute inset-0 pointer-events-none"
@@ -82,7 +83,15 @@ const Categories = () => (
       {/* Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {categories.map((cat, i) => (
-          <CategoryCard key={cat.id} category={cat} index={i} />
+          <CategoryCard 
+            key={cat.id} 
+            category={cat} 
+            index={i} 
+            onClick={() => {
+              setSelectedCategory(cat.name);
+              setView('collections');
+            }}
+          />
         ))}
       </div>
     </div>

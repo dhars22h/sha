@@ -3,9 +3,10 @@ import { motion } from 'framer-motion';
 import { FiInstagram, FiFacebook, FiTwitter, FiYoutube, FiMail, FiPhone, FiMapPin, FiArrowRight } from 'react-icons/fi';
 import AnimatedLogo from './AnimatedLogo';
 
-const FooterLink = ({ children }) => (
+const FooterLink = ({ children, onClick }) => (
   <motion.a
     href="#"
+    onClick={onClick}
     className="block text-white/50 hover:text-white text-sm py-1 transition-colors"
     whileHover={{ x: 4, color: '#f59e0b' }}
   >
@@ -25,7 +26,7 @@ const SocialButton = ({ icon: Icon, color }) => (
   </motion.a>
 );
 
-const Footer = () => {
+const Footer = ({ setView }) => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -94,7 +95,20 @@ const Footer = () => {
               Quick Links
             </h4>
             <div className="space-y-1">
-              {['Home', 'Shop All', 'New Arrivals', 'Best Sellers', 'Sale', 'Gift Cards', 'Loyalty Program'].map(l => (
+              {['Home', 'Shop All', 'New Arrivals', 'Best Sellers', 'Sale'].map(l => (
+                <FooterLink 
+                  key={l} 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (setView) {
+                      setView(l === 'Home' ? 'home' : 'collections');
+                    }
+                  }}
+                >
+                  {l}
+                </FooterLink>
+              ))}
+              {['Gift Cards', 'Loyalty Program'].map(l => (
                 <FooterLink key={l}>{l}</FooterLink>
               ))}
             </div>
@@ -106,7 +120,26 @@ const Footer = () => {
               Customer Service
             </h4>
             <div className="space-y-1">
-              {['Track My Order', 'Returns & Exchanges', 'Shipping Policy', 'FAQ', 'Contact Us', 'Size Guide', 'Loyalty Points'].map(l => (
+              {['Track My Order', 'Returns & Exchanges', 'Shipping Policy'].map(l => (
+                <FooterLink key={l}>{l}</FooterLink>
+              ))}
+              <FooterLink 
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (setView) setView('faq');
+                }}
+              >
+                FAQ
+              </FooterLink>
+              <FooterLink 
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (setView) setView('contact');
+                }}
+              >
+                Contact Us
+              </FooterLink>
+              {['Size Guide', 'Loyalty Points'].map(l => (
                 <FooterLink key={l}>{l}</FooterLink>
               ))}
             </div>

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { products, categories } from '../data/products';
 import ProductCard from './ProductCard';
 
-const Products = () => {
+const Products = ({ setView, setSelectedCategory, setSelectedProduct }) => {
   const [activeFilter, setActiveFilter] = useState('All');
   const filters = ['All', ...categories.map(c => c.name)];
 
@@ -74,7 +74,13 @@ const Products = () => {
         {/* Products grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filtered.map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
+            <ProductCard 
+              key={product.id} 
+              product={product} 
+              index={i} 
+              setView={setView}
+              setSelectedProduct={setSelectedProduct}
+            />
           ))}
         </div>
 
@@ -89,6 +95,10 @@ const Products = () => {
             className="px-10 py-4 rounded-full font-semibold text-white btn-luxury"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              setSelectedCategory('All');
+              setView('collections');
+            }}
           >
             View All Products
           </motion.button>

@@ -3,10 +3,57 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiSearch, FiShoppingCart, FiMenu, FiX, FiHeart } from 'react-icons/fi';
 import AnimatedLogo from './AnimatedLogo';
 
-const Navbar = ({ cartCount = 3 }) => {
+const Navbar = ({ 
+  cartCount = 3,
+  currentView,
+  setView,
+  setSelectedCategory,
+  setSearchQuery,
+}) => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [navSearch, setNavSearch] = useState('');
+
+  const handleNavLinkClick = (link, e) => {
+    e.preventDefault();
+    if (link === 'Home') {
+      setView('home');
+    } else if (link === 'Products') {
+      setSelectedCategory('All');
+      setSearchQuery('');
+      setView('collections');
+    } else if (link === 'Reviews') {
+      setView('reviews');
+    } else if (link === 'FAQ') {
+      setView('faq');
+    } else if (link === 'Contact') {
+      setView('contact');
+    } else if (link === 'Categories') {
+      if (currentView !== 'home') {
+        setView('home');
+        setTimeout(() => {
+          const el = document.getElementById('categories-section');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        const el = document.getElementById('categories-section');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      const targetId = `${link.toLowerCase()}-section`;
+      if (currentView !== 'home') {
+        setView('home');
+        setTimeout(() => {
+          const el = document.getElementById(targetId);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        const el = document.getElementById(targetId);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -14,7 +61,7 @@ const Navbar = ({ cartCount = 3 }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Home', 'Products', 'Categories', 'Brands', 'Offers', 'About'];
+  const navLinks = ['Home', 'Products', 'Reviews', 'FAQ', 'Contact'];
 
   return (
     <>
@@ -46,13 +93,29 @@ const Navbar = ({ cartCount = 3 }) => {
                   <motion.a
                     key={link}
                     href="#"
+                    onClick={(e) => handleNavLinkClick(link, e)}
                     className="text-sm font-medium text-white/70 hover:text-white transition-colors relative group"
-                    style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '0.05em' }}
+                    style={{ 
+                      fontFamily: "'Inter', sans-serif", 
+                      letterSpacing: '0.05em',
+                      color: (link === 'Home' && currentView === 'home') || 
+                             (link === 'Products' && currentView === 'collections') || 
+                             (link === 'Reviews' && currentView === 'reviews') || 
+                             (link === 'FAQ' && currentView === 'faq') || 
+                             (link === 'Contact' && currentView === 'contact') ? '#fff' : 'rgba(255,255,255,0.7)'
+                    }}
                     whileHover={{ y: -2 }}
                   >
                     {link}
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300"
-                      style={{ background: 'linear-gradient(90deg, #f59e0b, #db2777)' }}
+                      style={{ 
+                        background: 'linear-gradient(90deg, #f59e0b, #db2777)',
+                        width: (link === 'Home' && currentView === 'home') || 
+                               (link === 'Products' && currentView === 'collections') || 
+                               (link === 'Reviews' && currentView === 'reviews') || 
+                               (link === 'FAQ' && currentView === 'faq') || 
+                               (link === 'Contact' && currentView === 'contact') ? '100%' : '0%'
+                      }}
                     />
                   </motion.a>
                 ))}
@@ -107,6 +170,11 @@ const Navbar = ({ cartCount = 3 }) => {
                   className="hidden lg:block px-5 py-2 rounded-full text-sm font-semibold text-white btn-luxury"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => {
+                    setSelectedCategory('All');
+                    setSearchQuery('');
+                    setView('collections');
+                  }}
                 >
                   Shop Now
                 </motion.button>
@@ -138,6 +206,11 @@ const Navbar = ({ cartCount = 3 }) => {
                     <input
                       type="text"
                       placeholder="Search shampoos, categories, brands..."
+                      value={navSearch}
+                      onChange={(e) => {
+                        setNavSearch(e.target.value);
+                        setSearchQuery(e.target.value);
+                      }}
                       className="flex-1 bg-transparent text-white placeholder-white/40 text-sm outline-none"
                       autoFocus
                     />
@@ -174,7 +247,10 @@ const Navbar = ({ cartCount = 3 }) => {
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: i * 0.05 }}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(e) => {
+                    setMenuOpen(false);
+                    handleNavLinkClick(link, e);
+                  }}
                 >
                   {link}
                 </motion.a>
@@ -184,6 +260,12 @@ const Navbar = ({ cartCount = 3 }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
+                onClick={() => {
+                  setMenuOpen(false);
+                  setSelectedCategory('All');
+                  setSearchQuery('');
+                  setView('collections');
+                }}
               >
                 Shop Now
               </motion.button>

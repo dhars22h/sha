@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FiHeart, FiShoppingCart, FiStar } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
 
-const ProductCard = ({ product, index }) => {
+const ProductCard = ({ product, index, setView, setSelectedProduct }) => {
   const [wishlisted, setWishlisted] = useState(false);
   const [added, setAdded] = useState(false);
 
@@ -60,7 +60,10 @@ const ProductCard = ({ product, index }) => {
 
       {/* Product visual */}
       <div
-        className={`relative h-48 flex items-center justify-center bg-gradient-to-br ${product.bgColor} overflow-hidden`}
+        className={`relative h-48 flex items-center justify-center bg-gradient-to-br ${product.bgColor} overflow-hidden cursor-pointer`}
+        onClick={() => {
+          if (setSelectedProduct) setSelectedProduct(product);
+        }}
       >
         {/* Decorative circles */}
         <div
@@ -106,8 +109,11 @@ const ProductCard = ({ product, index }) => {
 
         {/* Name */}
         <h3
-          className="text-white font-bold text-lg leading-tight mb-2 group-hover:text-amber-200 transition-colors"
+          className="text-white font-bold text-lg leading-tight mb-2 group-hover:text-amber-200 transition-colors cursor-pointer"
           style={{ fontFamily: "'Playfair Display', serif" }}
+          onClick={() => {
+            if (setSelectedProduct) setSelectedProduct(product);
+          }}
         >
           {product.name}
         </h3>

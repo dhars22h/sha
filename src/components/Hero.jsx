@@ -149,7 +149,7 @@ const ShampooBottle = () => (
   </motion.div>
 );
 
-const Hero = () => {
+const Hero = ({ setView }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
@@ -258,6 +258,7 @@ const Hero = () => {
                 className="btn-luxury px-8 py-4 rounded-full font-semibold text-white text-lg flex items-center justify-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => setView('collections')}
               >
                 Shop Now
                 <motion.span
@@ -277,6 +278,7 @@ const Hero = () => {
                 }}
                 whileHover={{ scale: 1.05, borderColor: 'rgba(245,158,11,0.5)' }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => setView('collections')}
               >
                 <span
                   className="w-8 h-8 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"
