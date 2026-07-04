@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiInstagram, FiFacebook, FiTwitter, FiYoutube, FiMail, FiPhone, FiMapPin, FiArrowRight } from 'react-icons/fi';
 import AnimatedLogo from './AnimatedLogo';
@@ -26,7 +27,8 @@ const SocialButton = ({ icon: Icon, color }) => (
   </motion.a>
 );
 
-const Footer = ({ setView }) => {
+const Footer = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -100,9 +102,7 @@ const Footer = ({ setView }) => {
                   key={l} 
                   onClick={(e) => {
                     e.preventDefault();
-                    if (setView) {
-                      setView(l === 'Home' ? 'home' : 'collections');
-                    }
+                    navigate(l === 'Home' ? '/' : '/products');
                   }}
                 >
                   {l}
@@ -126,7 +126,7 @@ const Footer = ({ setView }) => {
               <FooterLink 
                 onClick={(e) => {
                   e.preventDefault();
-                  if (setView) setView('faq');
+                  navigate('/faq');
                 }}
               >
                 FAQ
@@ -134,7 +134,7 @@ const Footer = ({ setView }) => {
               <FooterLink 
                 onClick={(e) => {
                   e.preventDefault();
-                  if (setView) setView('contact');
+                  navigate('/contact');
                 }}
               >
                 Contact Us

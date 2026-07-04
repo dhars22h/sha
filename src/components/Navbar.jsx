@@ -1,59 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { NavLink, Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiSearch, FiShoppingCart, FiMenu, FiX, FiHeart } from 'react-icons/fi';
 import AnimatedLogo from './AnimatedLogo';
+import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 
-const Navbar = ({ 
-  cartCount = 3,
-  currentView,
-  setView,
-  setSelectedCategory,
-  setSearchQuery,
-}) => {
+const navLinks = [
+  { to: '/', label: 'Home', end: true },
+  { to: '/products', label: 'Products' },
+  { to: '/custom-shampoo', label: 'Custom Shampoo' },
+  { to: '/reviews', label: 'Reviews' },
+  { to: '/contact', label: 'Contact' },
+];
+
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [navSearch, setNavSearch] = useState('');
-
-  const handleNavLinkClick = (link, e) => {
-    e.preventDefault();
-    if (link === 'Home') {
-      setView('home');
-    } else if (link === 'Products') {
-      setSelectedCategory('All');
-      setSearchQuery('');
-      setView('collections');
-    } else if (link === 'Reviews') {
-      setView('reviews');
-    } else if (link === 'FAQ') {
-      setView('faq');
-    } else if (link === 'Contact') {
-      setView('contact');
-    } else if (link === 'Categories') {
-      if (currentView !== 'home') {
-        setView('home');
-        setTimeout(() => {
-          const el = document.getElementById('categories-section');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      } else {
-        const el = document.getElementById('categories-section');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      const targetId = `${link.toLowerCase()}-section`;
-      if (currentView !== 'home') {
-        setView('home');
-        setTimeout(() => {
-          const el = document.getElementById(targetId);
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      } else {
-        const el = document.getElementById(targetId);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { cartCount } = useCart();
+  const { wishlistCount } = useWishlist();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -61,7 +30,20 @@ const Navbar = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Home', 'Products', 'Reviews', 'FAQ', 'Contact'];
+  useEffect(() => {
+    setNavSearch(searchParams.get('q') || '');
+  }, [searchParams]);
+
+  const handleSearch = (query) => {
+    const q = query.trim();
+    if (q) {
+      navigate(`/products?q=${encodeURIComponent(q)}`);
+    } else {
+      navigate('/products');
+    }
+    setSearchOpen(false);
+    setMenuOpen(false);
+  };
 
   return (
     <>
@@ -73,57 +55,44 @@ const Navbar = ({
       >
         <div
           className="navbar-glass transition-all duration-300"
-          style={{
-            boxShadow: scrolled ? '0 4px 30px rgba(124,58,237,0.2)' : 'none',
-          }}
+          style={{ boxShadow: scrolled ? '0 4px 30px rgba(124,58,237,0.2)' : 'none' }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16 lg:h-20">
-              {/* Logo */}
-              <motion.div
-                className="flex-shrink-0"
-                whileHover={{ scale: 1.02 }}
-              >
-                <AnimatedLogo size="nav" className="py-1" />
-              </motion.div>
+              <Link to="/" className="flex-shrink-0">
+                <motion.div whileHover={{ scale: 1.02 }}>
+                  <AnimatedLogo size="nav" className="py-1" />
+                </motion.div>
+              </Link>
 
-              {/* Desktop Nav Links */}
               <div className="hidden lg:flex items-center gap-8">
                 {navLinks.map((link) => (
-                  <motion.a
-                    key={link}
-                    href="#"
-                    onClick={(e) => handleNavLinkClick(link, e)}
-                    className="text-sm font-medium text-white/70 hover:text-white transition-colors relative group"
-                    style={{ 
-                      fontFamily: "'Inter', sans-serif", 
-                      letterSpacing: '0.05em',
-                      color: (link === 'Home' && currentView === 'home') || 
-                             (link === 'Products' && currentView === 'collections') || 
-                             (link === 'Reviews' && currentView === 'reviews') || 
-                             (link === 'FAQ' && currentView === 'faq') || 
-                             (link === 'Contact' && currentView === 'contact') ? '#fff' : 'rgba(255,255,255,0.7)'
-                    }}
-                    whileHover={{ y: -2 }}
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    end={link.end}
+                    className={({ isActive }) =>
+                      `text-sm font-medium transition-colors relative group ${isActive ? 'text-white' : 'text-white/70 hover:text-white'}`
+                    }
+                    style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '0.05em' }}
                   >
-                    {link}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300"
-                      style={{ 
-                        background: 'linear-gradient(90deg, #f59e0b, #db2777)',
-                        width: (link === 'Home' && currentView === 'home') || 
-                               (link === 'Products' && currentView === 'collections') || 
-                               (link === 'Reviews' && currentView === 'reviews') || 
-                               (link === 'FAQ' && currentView === 'faq') || 
-                               (link === 'Contact' && currentView === 'contact') ? '100%' : '0%'
-                      }}
-                    />
-                  </motion.a>
+                    {({ isActive }) => (
+                      <>
+                        {link.label}
+                        <span
+                          className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300"
+                          style={{
+                            background: 'linear-gradient(90deg, #f59e0b, #db2777)',
+                            width: isActive ? '100%' : '0%',
+                          }}
+                        />
+                      </>
+                    )}
+                  </NavLink>
                 ))}
               </div>
 
-              {/* Icons */}
-              <div className="flex items-center gap-3 lg:gap-4">
-                {/* Search */}
+              <div className="flex items-center gap-2 lg:gap-3">
                 <motion.button
                   onClick={() => setSearchOpen(!searchOpen)}
                   className="p-2 rounded-full text-white/70 hover:text-white transition-colors"
@@ -134,52 +103,58 @@ const Navbar = ({
                   <FiSearch size={18} />
                 </motion.button>
 
-                {/* Wishlist */}
-                <motion.button
-                  className="hidden sm:flex p-2 rounded-full text-white/70 hover:text-rose-400 transition-colors"
-                  style={{ background: 'rgba(255,255,255,0.05)' }}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <FiHeart size={18} />
-                </motion.button>
+                <Link to="/wishlist">
+                  <motion.button
+                    className="relative hidden sm:flex p-2 rounded-full text-white/70 hover:text-rose-400 transition-colors"
+                    style={{ background: 'rgba(255,255,255,0.05)' }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <FiHeart size={18} />
+                    {wishlistCount > 0 && (
+                      <motion.span
+                        className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center text-white"
+                        style={{ background: 'linear-gradient(135deg, #db2777, #f43f5e)' }}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                      >
+                        {wishlistCount}
+                      </motion.span>
+                    )}
+                  </motion.button>
+                </Link>
 
-                {/* Cart */}
-                <motion.button
-                  className="relative p-2 rounded-full text-white/70 hover:text-white transition-colors"
-                  style={{ background: 'rgba(255,255,255,0.05)' }}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <FiShoppingCart size={18} />
-                  {cartCount > 0 && (
-                    <motion.span
-                      className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center text-white"
-                      style={{ background: 'linear-gradient(135deg, #db2777, #7c3aed)' }}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ type: 'spring', stiffness: 500 }}
-                    >
-                      {cartCount}
-                    </motion.span>
-                  )}
-                </motion.button>
+                <Link to="/cart">
+                  <motion.button
+                    className="relative p-2 rounded-full text-white/70 hover:text-white transition-colors"
+                    style={{ background: 'rgba(255,255,255,0.05)' }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <FiShoppingCart size={18} />
+                    {cartCount > 0 && (
+                      <motion.span
+                        className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center text-white"
+                        style={{ background: 'linear-gradient(135deg, #db2777, #7c3aed)' }}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                      >
+                        {cartCount}
+                      </motion.span>
+                    )}
+                  </motion.button>
+                </Link>
 
-                {/* Shop Now button - desktop */}
-                <motion.button
-                  className="hidden lg:block px-5 py-2 rounded-full text-sm font-semibold text-white btn-luxury"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => {
-                    setSelectedCategory('All');
-                    setSearchQuery('');
-                    setView('collections');
-                  }}
-                >
-                  Shop Now
-                </motion.button>
+                <Link to="/products" className="hidden lg:block">
+                  <motion.button
+                    className="px-5 py-2 rounded-full text-sm font-semibold text-white btn-luxury"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Shop Now
+                  </motion.button>
+                </Link>
 
-                {/* Mobile menu button */}
                 <motion.button
                   className="lg:hidden p-2 rounded-full text-white/70"
                   onClick={() => setMenuOpen(!menuOpen)}
@@ -191,7 +166,6 @@ const Navbar = ({
             </div>
           </div>
 
-          {/* Search bar */}
           <AnimatePresence>
             {searchOpen && (
               <motion.div
@@ -201,20 +175,23 @@ const Navbar = ({
                 className="border-t border-white/10 overflow-hidden"
               >
                 <div className="max-w-2xl mx-auto px-4 py-3">
-                  <div className="flex items-center gap-3 px-4 py-2 rounded-full glass">
+                  <form
+                    onSubmit={(e) => { e.preventDefault(); handleSearch(navSearch); }}
+                    className="flex items-center gap-3 px-4 py-2 rounded-full glass"
+                  >
                     <FiSearch className="text-white/50" />
                     <input
                       type="text"
-                      placeholder="Search shampoos, categories, brands..."
+                      placeholder="Search shampoos, categories..."
                       value={navSearch}
-                      onChange={(e) => {
-                        setNavSearch(e.target.value);
-                        setSearchQuery(e.target.value);
-                      }}
+                      onChange={(e) => setNavSearch(e.target.value)}
                       className="flex-1 bg-transparent text-white placeholder-white/40 text-sm outline-none"
                       autoFocus
                     />
-                  </div>
+                    <button type="submit" className="text-sm text-amber-400 font-semibold hover:text-amber-300">
+                      Search
+                    </button>
+                  </form>
                 </div>
               </motion.div>
             )}
@@ -222,7 +199,6 @@ const Navbar = ({
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -240,41 +216,42 @@ const Navbar = ({
               exit={{ y: -20, opacity: 0 }}
             >
               {navLinks.map((link, i) => (
-                <motion.a
-                  key={link}
-                  href="#"
-                  className="block py-3 px-4 text-white/80 hover:text-white text-lg font-medium border-b border-white/5"
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: i * 0.05 }}
-                  onClick={(e) => {
-                    setMenuOpen(false);
-                    handleNavLinkClick(link, e);
-                  }}
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  end={link.end}
+                  onClick={() => setMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `block py-3 px-4 text-lg font-medium border-b border-white/5 ${isActive ? 'text-white' : 'text-white/80'}`
+                  }
                 >
-                  {link}
-                </motion.a>
+                  <motion.span initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: i * 0.05 }}>
+                    {link.label}
+                  </motion.span>
+                </NavLink>
               ))}
-              <motion.button
-                className="mt-4 w-full py-3 rounded-full font-semibold text-white btn-luxury"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                onClick={() => {
-                  setMenuOpen(false);
-                  setSelectedCategory('All');
-                  setSearchQuery('');
-                  setView('collections');
-                }}
-              >
-                Shop Now
-              </motion.button>
+              <div className="flex gap-4 px-4 mt-4">
+                <Link to="/wishlist" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 text-white/70">
+                  <FiHeart /> Wishlist ({wishlistCount})
+                </Link>
+                <Link to="/cart" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 text-white/70">
+                  <FiShoppingCart /> Cart ({cartCount})
+                </Link>
+              </div>
+              <Link to="/products" onClick={() => setMenuOpen(false)}>
+                <motion.button
+                  className="mt-4 w-full py-3 rounded-full font-semibold text-white btn-luxury"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  Shop Now
+                </motion.button>
+              </Link>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
     </>
   );
-};
-
-export default Navbar;
+}

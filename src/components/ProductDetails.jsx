@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiShoppingCart, FiHeart, FiMinus, FiPlus, FiChevronRight, FiCheck, FiSend, FiShoppingBag } from 'react-icons/fi';
 import { FaStar, FaRegStar } from 'react-icons/fa';
-import { products, reviews as initialReviews } from '../data/products';
+import { reviews as initialReviews } from '../data/products';
+import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
+import { useProducts } from '../context/ProductContext';
 
 // Local floating bubbles for the image gallery visual
 const GalleryBubbles = ({ color }) => {
@@ -45,12 +49,11 @@ const GalleryBubbles = ({ color }) => {
   );
 };
 
-const ProductDetails = ({
-  product,
-  setView,
-  setSelectedProduct,
-  setCartCount,
-}) => {
+const ProductDetails = ({ product }) => {
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
+  const { isInWishlist, toggleWishlist } = useWishlist();
+  const { getRelatedProducts } = useProducts();
   const [activeTab, setActiveTab] = useState('description'); // description | ingredients | benefits | usage
   const [activeThumb, setActiveThumb] = useState(0); // 0: Main, 1: Active Botanical, 2: Texture, 3: Packaging
   const [qty, setQty] = useState(1);
@@ -102,12 +105,12 @@ const ProductDetails = ({
     // Reset view states
     setActiveThumb(0);
     setQty(1);
-    setWishlisted(false);
+    setWishlisted(isInWishlist(product.id));
     setAdded(false);
     setBought(false);
     setWriteReviewOpen(false);
     setReviewSubmitted(false);
-  }, [product]);
+  }, [product, isInWishlist]);
 
   const showToast = (message) => {
     setToastMessage(message);
@@ -115,25 +118,26 @@ const ProductDetails = ({
   };
 
   const handleAddToCart = () => {
-    setCartCount(prev => prev + qty);
+    addToCart(product, qty);
     setAdded(true);
     showToast(`Added ${qty} ${product.name} to Cart!`);
     setTimeout(() => setAdded(false), 1500);
   };
 
   const handleBuyNow = () => {
-    setCartCount(prev => prev + qty);
+    addToCart(product, qty);
     setBought(true);
     showToast(`Order Placed! Thank you for purchasing ${product.name}!`);
     setTimeout(() => {
       setBought(false);
-      setView('home');
+      navigate('/');
     }, 2000);
   };
 
   const handleWishlistToggle = () => {
-    setWishlisted(!wishlisted);
-    showToast(wishlisted ? 'Removed from wishlist' : 'Added to wishlist!');
+    const wasWishlisted = isInWishlist(product.id);
+    toggleWishlist(product);
+    showToast(wasWishlisted ? 'Removed from wishlist' : 'Added to wishlist!');
   };
 
   const handleSubmitReview = (e) => {
@@ -224,16 +228,7 @@ const ProductDetails = ({
 
   const activeSpecs = getProductSpecs();
 
-  // Find 4 related products
-  const relatedProducts = products
-    .filter(p => p.id !== product.id)
-    .sort((a, b) => {
-      // Prioritize same category, then rating
-      if (a.category === product.category && b.category !== product.category) return -1;
-      if (a.category !== product.category && b.category === product.category) return 1;
-      return b.rating - a.rating;
-    })
-    .slice(0, 4);
+  const relatedProducts = getRelatedProducts(product.id, product.category, 4);
 
   // Reviews calculations
   const totalReviewsCount = reviewsList.length;
@@ -273,9 +268,9 @@ const ProductDetails = ({
         
         {/* Breadcrumbs Navigation */}
         <div className="flex items-center gap-2 text-xs text-white/40 mb-8 border-b border-white/5 pb-4">
-          <button onClick={() => setView('home')} className="hover:text-amber-400 transition-colors">Home</button>
+          <button onClick={() => navigate('/')} className="hover:text-amber-400 transition-colors">Home</button>
           <FiChevronRight size={10} />
-          <button onClick={() => setView('collections')} className="hover:text-amber-400 transition-colors">Shop</button>
+          <button onClick={() => navigate('/products')} className="hover:text-amber-400 transition-colors">Shop</button>
           <FiChevronRight size={10} />
           <span className="text-white/60">{product.category}</span>
           <FiChevronRight size={10} />
@@ -474,7 +469,7 @@ const ProductDetails = ({
                 >
                   <FiHeart
                     size={20}
-                    className={wishlisted ? 'fill-rose-500 text-rose-500' : 'text-white/70'}
+                    className={isInWishlist(product.id) ? 'fill-rose-500 text-rose-500' : 'text-white/70'}
                   />
                 </motion.button>
               </div>
@@ -756,7 +751,7 @@ const ProductDetails = ({
                   key={p.id}
                   className="product-card rounded-2xl overflow-hidden group relative flex flex-col justify-between cursor-pointer"
                   onClick={() => {
-                    setSelectedProduct(p);
+                    navigate(`/product/${p.id}`);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   initial={{ opacity: 0, y: 30 }}

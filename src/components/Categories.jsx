@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { categories } from '../data/products';
 
@@ -50,7 +51,9 @@ const CategoryCard = ({ category, index, onClick }) => (
   </motion.div>
 );
 
-const Categories = ({ setView, setSelectedCategory }) => (
+const Categories = () => {
+  const navigate = useNavigate();
+  return (
   <section className="py-24 relative" style={{ background: 'rgba(10,0,20,0.9)' }}>
     <div
       className="absolute inset-0 pointer-events-none"
@@ -87,15 +90,13 @@ const Categories = ({ setView, setSelectedCategory }) => (
             key={cat.id} 
             category={cat} 
             index={i} 
-            onClick={() => {
-              setSelectedCategory(cat.name);
-              setView('collections');
-            }}
+            onClick={() => navigate(`/products?category=${encodeURIComponent(cat.name)}`)}
           />
         ))}
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Categories;
