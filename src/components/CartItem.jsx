@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiMinus, FiPlus, FiTrash2 } from 'react-icons/fi';
 
@@ -13,8 +13,12 @@ export default function CartItem({ item, index = 0, onIncrease, onDecrease, onUp
       transition={{ delay: index * 0.05 }}
     >
       <Link to={`/product/${item.id}`} className="flex-shrink-0">
-        <div className={`w-24 h-24 sm:w-20 sm:h-20 rounded-xl flex items-center justify-center text-4xl bg-gradient-to-br ${item.bgColor}`}>
-          {item.emoji}
+        <div className={`w-24 h-24 sm:w-20 sm:h-20 rounded-xl flex items-center justify-center overflow-hidden bg-gradient-to-br ${item.bgColor}`}>
+          {item.image ? (
+            <img src={item.image} alt={item.name} className="w-full h-full object-contain p-1" />
+          ) : (
+            <span className="text-4xl">{item.emoji}</span>
+          )}
         </div>
       </Link>
 

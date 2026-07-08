@@ -19,5 +19,6 @@ export const STORAGE_KEYS = {
   CART: 'shans_cart',
   WISHLIST: 'shans_wishlist',
   PRODUCTS: 'shans_products',
+  ADMIN_PRODUCTS: 'shans_admin_products',
   ADMIN_AUTH: 'shans_admin_auth',
 };

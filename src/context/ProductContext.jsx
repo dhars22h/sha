@@ -1,30 +1,10 @@
-import { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import { createContext, useContext, useState, useCallback } from 'react';
 import { products as defaultProducts } from '../data/products';
-import { loadFromStorage, saveToStorage, STORAGE_KEYS } from '../utils/storage';
 
 const ProductContext = createContext(null);
 
 export function ProductProvider({ children }) {
-  const [products, setProducts] = useState(() =>
-    loadFromStorage(STORAGE_KEYS.PRODUCTS, defaultProducts)
-  );
-
-  useEffect(() => {
-    saveToStorage(STORAGE_KEYS.PRODUCTS, products);
-  }, [products]);
-
-  useEffect(() => {
-    const syncFromStorage = () => {
-      const stored = loadFromStorage(STORAGE_KEYS.PRODUCTS, null);
-      if (stored) setProducts(stored);
-    };
-    window.addEventListener('focus', syncFromStorage);
-    window.addEventListener('storage', syncFromStorage);
-    return () => {
-      window.removeEventListener('focus', syncFromStorage);
-      window.removeEventListener('storage', syncFromStorage);
-    };
-  }, []);
+  const [products, setProducts] = useState(defaultProducts);
 
   const getProductById = useCallback(
     (id) => products.find((p) => p.id === Number(id)),

@@ -20,7 +20,7 @@ export function AdminProvider({ children }) {
   const [rememberMe, setRememberMe] = useState(false);
 
   const [products, setProducts] = useState(() =>
-    loadFromStorage(STORAGE_KEYS.PRODUCTS, initialProducts)
+    loadFromStorage(STORAGE_KEYS.ADMIN_PRODUCTS, initialProducts)
   );
   const [categories, setCategories] = useState(initialCategories);
   const [customers, setCustomers] = useState(initialCustomers);
@@ -32,7 +32,7 @@ export function AdminProvider({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    saveToStorage(STORAGE_KEYS.PRODUCTS, products);
+    saveToStorage(STORAGE_KEYS.ADMIN_PRODUCTS, products);
   }, [products]);
 
   const login = useCallback((email, password, remember) => {

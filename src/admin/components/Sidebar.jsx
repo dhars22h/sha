@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import {
   FiGrid, FiPackage, FiShoppingBag, FiUsers, FiStar, FiSettings, FiLogOut,
+  FiBarChart2, FiTag, FiPercent,
 } from 'react-icons/fi';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAdmin } from '../context/AdminContext';
@@ -10,6 +11,9 @@ const menuItems = [
   { path: '/admin/products', label: 'Products', icon: FiPackage },
   { path: '/admin/orders', label: 'Orders', icon: FiShoppingBag },
   { path: '/admin/customers', label: 'Customers', icon: FiUsers },
+  { path: '/admin/analytics', label: 'Analytics', icon: FiBarChart2 },
+  { path: '/admin/categories', label: 'Categories', icon: FiTag },
+  { path: '/admin/offers', label: 'Offers & Coupons', icon: FiPercent },
   { path: '/admin/reviews', label: 'Reviews', icon: FiStar },
   { path: '/admin/settings', label: 'Settings', icon: FiSettings },
 ];

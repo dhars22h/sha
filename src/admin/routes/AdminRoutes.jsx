@@ -9,6 +9,9 @@ import AddProduct from '../pages/AddProduct';
 import EditProduct from '../pages/EditProduct';
 import Orders from '../pages/Orders';
 import Customers from '../pages/Customers';
+import Analytics from '../pages/Analytics';
+import Categories from '../pages/Categories';
+import Offers from '../pages/Offers';
 import Reviews from '../pages/Reviews';
 import Settings from '../pages/Settings';
 
@@ -31,6 +34,9 @@ export default function AdminRoutes() {
           <Route path="products/edit/:id" element={<EditProduct />} />
           <Route path="orders" element={<Orders />} />
           <Route path="customers" element={<Customers />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="categories" element={<Categories />} />
+          <Route path="offers" element={<Offers />} />
           <Route path="reviews" element={<Reviews />} />
           <Route path="settings" element={<Settings />} />
         </Route>

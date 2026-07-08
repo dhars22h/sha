@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FiArrowRight, FiPlay } from 'react-icons/fi';
 import AnimatedLogo from './AnimatedLogo';
-import heroVid from '../assets/videos/hero_bg.mp4';
 import arganImg from '../assets/images/argan_shampoo.png';
 
 const ShampooBottle = () => (
@@ -55,17 +54,34 @@ const Hero = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
       style={{ background: '#05120d' }}
     >
-      {/* Full-bleed background cinematic video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        className="absolute inset-0 w-full h-full object-cover opacity-25 z-0"
-      >
-        <source src={heroVid} type="video/mp4" />
-      </video>
+      {/* Animated ambient background — soft organic particle atmosphere */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Deep forest gradient base */}
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 100% 80% at 50% 0%, #0d2818 0%, #05120d 60%, #030c08 100%)' }} />
+        {/* Floating orb 1 */}
+        <motion.div
+          className="absolute rounded-full pointer-events-none"
+          style={{ width: 600, height: 600, top: '-10%', left: '-10%', background: 'radial-gradient(circle, rgba(40,84,63,0.18) 0%, transparent 70%)' }}
+          animate={{ x: [0, 40, 0], y: [0, 30, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        {/* Floating orb 2 */}
+        <motion.div
+          className="absolute rounded-full pointer-events-none"
+          style={{ width: 500, height: 500, bottom: '-5%', right: '-8%', background: 'radial-gradient(circle, rgba(96,108,56,0.12) 0%, transparent 70%)' }}
+          animate={{ x: [0, -30, 0], y: [0, -20, 0], scale: [1, 1.08, 1] }}
+          transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        {/* Floating orb 3 */}
+        <motion.div
+          className="absolute rounded-full pointer-events-none"
+          style={{ width: 300, height: 300, top: '40%', left: '35%', background: 'radial-gradient(circle, rgba(163,177,138,0.06) 0%, transparent 70%)' }}
+          animate={{ x: [0, 20, -20, 0], y: [0, -15, 15, 0], scale: [1, 1.15, 0.95, 1] }}
+          transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        {/* Subtle grid/texture overlay */}
+        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(163,177,138,0.04) 1px, transparent 0)', backgroundSize: '48px 48px' }} />
+      </div>
 
       {/* Forest ambient overlay */}
       <div

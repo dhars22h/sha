@@ -8,15 +8,7 @@ import keratinImg from '../assets/images/keratin_shampoo.png';
 import dandruffImg from '../assets/images/dandruff_shampoo.png';
 import growthImg from '../assets/images/growth_shampoo.png';
 
-// Product Videos
-import arganVid from '../assets/videos/argan_video.mp4';
-import aloeVid from '../assets/videos/aloe_video.mp4';
-import rosemaryVid from '../assets/videos/rosemary_video.mp4';
-import teatreeVid from '../assets/videos/teatree_video.mp4';
-import coconutVid from '../assets/videos/coconut_video.mp4';
-import keratinVid from '../assets/videos/keratin_video.mp4';
-import dandruffVid from '../assets/videos/dandruff_video.mp4';
-import growthVid from '../assets/videos/growth_video.mp4';
+// Product Videos — placeholder files not yet available
 
 // Customer Photos
 import priyaAvatar from '../assets/images/customer_priya.jpg';
@@ -39,7 +31,7 @@ export const products = [
     emoji: "🌿",
     bgColor: "from-emerald-950/40 to-forest-900/20",
     image: arganImg,
-    video: arganVid,
+    video: null,
     ingredientsList: ["Pure Moroccan Argan Oil", "Cold-pressed Jojoba Oil", "Shea Butter Extract", "Pro-Vitamin B5"]
   },
   {
@@ -56,7 +48,7 @@ export const products = [
     emoji: "🍃",
     bgColor: "from-sage-950/40 to-emerald-900/20",
     image: aloeImg,
-    video: aloeVid,
+    video: null,
     ingredientsList: ["Organic Aloe Vera Gel", "Green Tea Extract", "Hydrolyzed Silk", "UV-B Protective Complex"]
   },
   {
@@ -73,7 +65,7 @@ export const products = [
     emoji: "🌱",
     bgColor: "from-emerald-950/50 to-olive-900/20",
     image: rosemaryImg,
-    video: rosemaryVid,
+    video: null,
     ingredientsList: ["Rosemary Leaf Extract", "Castor Oil", "Ginseng Root", "Biotin (Vitamin B7)"]
   },
   {
@@ -90,7 +82,7 @@ export const products = [
     emoji: "🌲",
     bgColor: "from-olive-950/40 to-forest-900/20",
     image: teatreeImg,
-    video: teatreeVid,
+    video: null,
     ingredientsList: ["Australian Tea Tree Oil", "Peppermint Extract", "Salicylic Acid", "Eucalyptus Oil"]
   },
   {
@@ -107,7 +99,7 @@ export const products = [
     emoji: "🥥",
     bgColor: "from-sage-950/30 to-forest-900/20",
     image: coconutImg,
-    video: coconutVid,
+    video: null,
     ingredientsList: ["Organic Coconut Milk", "Raw Coconut Butter", "Avocado Fruit Oil", "Hibiscus Flower Extract"]
   },
   {
@@ -124,7 +116,7 @@ export const products = [
     emoji: "🌾",
     bgColor: "from-olive-950/35 to-sage-900/25",
     image: keratinImg,
-    video: keratinVid,
+    video: null,
     ingredientsList: ["Hydrolyzed Wheat Keratin", "Silk Powder", "Sweet Almond Oil", "Vitamin E"]
   },
   {
@@ -141,7 +133,7 @@ export const products = [
     emoji: "❄️",
     bgColor: "from-teal-950/40 to-emerald-900/20",
     image: dandruffImg,
-    video: dandruffVid,
+    video: null,
     ingredientsList: ["Zinc Pyrithione (1.0%)", "Tea Tree Extract", "Chamomile Extract", "Menthol Liposomes"]
   },
   {
@@ -158,7 +150,7 @@ export const products = [
     emoji: "✨",
     bgColor: "from-emerald-950/40 to-olive-900/20",
     image: growthImg,
-    video: growthVid,
+    video: null,
     ingredientsList: ["Double Strength Biotin", "Organic Green Leaves", "Apple Cider Vinegar", "Wheat Germ Oil"]
   }
 ];
