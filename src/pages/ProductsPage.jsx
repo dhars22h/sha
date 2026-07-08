@@ -47,11 +47,11 @@ export default function ProductsPage() {
   const categoryFilters = ['All', ...categories.map((c) => c.name)];
 
   return (
-    <section className="pt-28 pb-24 relative min-h-screen" style={{ background: '#06000f' }}>
+    <section className="pt-28 pb-24 relative min-h-screen" style={{ background: '#071911' }}>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(219,39,119,0.08) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(124,58,237,0.08) 0%, transparent 50%)',
+          backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(96,108,56,0.06) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(40,84,63,0.06) 0%, transparent 50%)',
         }}
       />
 
@@ -105,7 +105,7 @@ export default function ProductsPage() {
               onClick={() => setCategory(cat)}
               className="px-4 py-2 rounded-full text-sm font-medium transition-all"
               style={{
-                background: category === cat ? 'linear-gradient(135deg, #7c3aed, #db2777)' : 'rgba(255,255,255,0.05)',
+                background: category === cat ? 'linear-gradient(135deg, #28543f, #606c38)' : 'rgba(255,255,255,0.05)',
                 border: category === cat ? '1px solid transparent' : '1px solid rgba(255,255,255,0.1)',
                 color: category === cat ? '#fff' : 'rgba(255,255,255,0.6)',
               }}

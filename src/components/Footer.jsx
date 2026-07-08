@@ -9,7 +9,7 @@ const FooterLink = ({ children, onClick }) => (
     href="#"
     onClick={onClick}
     className="block text-white/50 hover:text-white text-sm py-1 transition-colors"
-    whileHover={{ x: 4, color: '#f59e0b' }}
+    whileHover={{ x: 4, color: '#a3b18a' }}
   >
     {children}
   </motion.a>
@@ -44,20 +44,20 @@ const Footer = () => {
     <footer
       className="relative overflow-hidden pt-20 pb-8"
       style={{
-        background: 'linear-gradient(180deg, #06000f 0%, #0a0014 100%)',
-        borderTop: '1px solid rgba(245,158,11,0.1)',
+        background: 'linear-gradient(180deg, #05120d 0%, #071911 100%)',
+        borderTop: '1px solid rgba(163,177,138,0.15)',
       }}
     >
       {/* Glow top */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1 pointer-events-none"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(245,158,11,0.5), rgba(124,58,237,0.5), transparent)' }}
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(163,177,138,0.4), rgba(40,84,63,0.3), transparent)' }}
       />
 
       {/* Background gradient */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ backgroundImage: 'radial-gradient(circle at 50% 0%, rgba(124,58,237,0.06) 0%, transparent 60%)' }}
+        style={{ backgroundImage: 'radial-gradient(circle at 50% 0%, rgba(40,84,63,0.06) 0%, transparent 60%)' }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -71,15 +71,15 @@ const Footer = () => {
             </p>
             <div className="space-y-2 mb-6">
               <div className="flex items-center gap-2 text-white/40 text-sm">
-                <FiMapPin size={14} className="text-amber-400 flex-shrink-0" />
+                <FiMapPin size={14} className="text-sage-300 flex-shrink-0" />
                 Mumbai, Maharashtra, India
               </div>
               <div className="flex items-center gap-2 text-white/40 text-sm">
-                <FiPhone size={14} className="text-amber-400 flex-shrink-0" />
+                <FiPhone size={14} className="text-sage-300 flex-shrink-0" />
                 +91 98765 43210
               </div>
               <div className="flex items-center gap-2 text-white/40 text-sm">
-                <FiMail size={14} className="text-amber-400 flex-shrink-0" />
+                <FiMail size={14} className="text-sage-300 flex-shrink-0" />
                 hello@shansshampoo.com
               </div>
             </div>
@@ -169,7 +169,7 @@ const Footer = () => {
               <motion.button
                 onClick={handleSubscribe}
                 className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg flex items-center justify-center text-white"
-                style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)' }}
+                style={{ background: 'linear-gradient(135deg, #28543f, #606c38)' }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -212,7 +212,7 @@ const Footer = () => {
         {/* Divider */}
         <div
           className="w-full h-px mb-8"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(245,158,11,0.3), rgba(124,58,237,0.3), transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, rgba(163,177,138,0.2), rgba(40,84,63,0.2), transparent)' }}
         />
 
         {/* Bottom bar */}
@@ -226,7 +226,7 @@ const Footer = () => {
                 key={l}
                 href="#"
                 className="text-white/30 text-xs hover:text-white/60 transition-colors"
-                whileHover={{ color: '#f59e0b' }}
+                whileHover={{ color: '#a3b18a' }}
               >
                 {l}
               </motion.a>

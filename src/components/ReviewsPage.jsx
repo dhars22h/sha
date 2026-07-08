@@ -12,7 +12,7 @@ const HeaderBubbles = () => {
     y: Math.random() * 80 + 10,
     delay: Math.random() * 3,
     duration: Math.random() * 8 + 6,
-    color: ['#ffd700', '#db2777', '#7c3aed', '#fbbf24', '#f472b6'][Math.floor(Math.random() * 5)],
+    color: ['#a3b18a', '#606c38', '#28543f', '#588157', '#b5c49f'][Math.floor(Math.random() * 5)],
   }));
 
   return (
@@ -252,12 +252,12 @@ const ReviewsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-28 pb-20 relative bg-[#0a0014] text-white">
+    <div className="min-h-screen pt-28 pb-20 relative bg-[#071911] text-white">
       {/* Background radial gradients */}
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{
-          backgroundImage: 'radial-gradient(circle at 50% 20%, rgba(124,58,237,0.06) 0%, transparent 60%), radial-gradient(circle at 10% 70%, rgba(219,39,119,0.05) 0%, transparent 50%), radial-gradient(circle at 90% 80%, rgba(245,158,11,0.04) 0%, transparent 50%)',
+          backgroundImage: 'radial-gradient(circle at 50% 20%, rgba(96,108,56,0.06) 0%, transparent 60%), radial-gradient(circle at 10% 70%, rgba(40,84,63,0.05) 0%, transparent 50%), radial-gradient(circle at 90% 80%, rgba(163,177,138,0.04) 0%, transparent 50%)',
         }}
       />
 
@@ -328,7 +328,7 @@ const ReviewsPage = () => {
                         className="h-full rounded-full"
                         style={{
                           width: `${bar.pct}%`,
-                          background: 'linear-gradient(90deg, #f59e0b, #db2777)',
+                          background: 'linear-gradient(90deg, #a3b18a, #606c38)',
                         }}
                       />
                     </div>
@@ -363,7 +363,7 @@ const ReviewsPage = () => {
                 {/* Decorative glow corner */}
                 <div
                   className="absolute w-28 h-28 rounded-full opacity-5 filter blur-xl pointer-events-none"
-                  style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)', top: '-20px', right: '-20px' }}
+                  style={{ background: 'linear-gradient(135deg, #28543f, #606c38)', top: '-20px', right: '-20px' }}
                 />
 
                 <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 text-amber-400 mx-auto mb-4">
@@ -423,7 +423,7 @@ const ReviewsPage = () => {
                           placeholder="e.g. Priyanth Sen"
                           value={name}
                           onChange={e => setName(e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl text-xs bg-white/5 border border-white/10 focus:outline-none focus:border-amber-500/60 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] text-white placeholder-white/20 transition-all duration-300"
+                          className="w-full px-4 py-3 rounded-xl text-xs bg-white/5 border border-white/10 focus:outline-none focus:border-sage-500/60 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(163,177,138,0.15)] text-white placeholder-white/20 transition-all duration-300"
                         />
                       </div>
                       
@@ -434,7 +434,7 @@ const ReviewsPage = () => {
                           placeholder="e.g. Bangalore, India"
                           value={location}
                           onChange={e => setLocation(e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl text-xs bg-white/5 border border-white/10 focus:outline-none focus:border-amber-500/60 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] text-white placeholder-white/20 transition-all duration-300"
+                          className="w-full px-4 py-3 rounded-xl text-xs bg-white/5 border border-white/10 focus:outline-none focus:border-sage-500/60 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(163,177,138,0.15)] text-white placeholder-white/20 transition-all duration-300"
                         />
                       </div>
                     </div>
@@ -469,7 +469,7 @@ const ReviewsPage = () => {
                         <select
                           value={concern}
                           onChange={e => setConcern(e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl text-xs bg-[#140b24] border border-white/10 text-white focus:outline-none focus:border-amber-500/60 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all duration-300"
+                          className="w-full px-4 py-3 rounded-xl text-xs bg-[#05120d] border border-white/10 text-white focus:outline-none focus:border-sage-500/60 focus:shadow-[0_0_15px_rgba(163,177,138,0.15)] transition-all duration-300"
                         >
                           <option value="Shine & Softness">Shine & Softness</option>
                           <option value="Scalp Health">Scalp Health</option>
@@ -484,7 +484,7 @@ const ReviewsPage = () => {
                         <select
                           value={product}
                           onChange={e => setProduct(e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl text-xs bg-[#140b24] border border-white/10 text-white focus:outline-none focus:border-amber-500/60 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all duration-300"
+                          className="w-full px-4 py-3 rounded-xl text-xs bg-[#05120d] border border-white/10 text-white focus:outline-none focus:border-sage-500/60 focus:shadow-[0_0_15px_rgba(163,177,138,0.15)] transition-all duration-300"
                         >
                           <option value="Royal Argan Luxe Shampoo">Royal Argan Luxe Shampoo</option>
                           <option value="Biotin Hair Growth Accelerator">Biotin Hair Growth Accelerator</option>
@@ -504,7 +504,7 @@ const ReviewsPage = () => {
                         placeholder="Detail your experience with Shan's Shampoo. What differences did you see in hair texture, scalp cleanliness, or shine?"
                         value={comment}
                         onChange={e => setComment(e.target.value)}
-                        className="w-full px-4 py-3 rounded-xl text-xs bg-white/5 border border-white/10 focus:outline-none focus:border-amber-500/60 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] text-white placeholder-white/20 transition-all duration-300 resize-none"
+                        className="w-full px-4 py-3 rounded-xl text-xs bg-white/5 border border-white/10 focus:outline-none focus:border-sage-500/60 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(163,177,138,0.15)] text-white placeholder-white/20 transition-all duration-300 resize-none"
                       />
                     </div>
 
@@ -646,7 +646,7 @@ const ReviewsPage = () => {
                     <motion.div
                       layoutId="activeReviewsFilter"
                       className="absolute inset-0 rounded-full"
-                      style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)', zIndex: -1 }}
+                      style={{ background: 'linear-gradient(135deg, #28543f, #606c38)', zIndex: -1 }}
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -680,8 +680,8 @@ const ReviewsPage = () => {
                         <div
                           className="w-12 h-12 rounded-full flex items-center justify-center text-xs font-black text-white flex-shrink-0"
                           style={{
-                            background: 'linear-gradient(135deg, #7c3aed, #db2777)',
-                            boxShadow: '0 4px 10px rgba(124,58,237,0.3)',
+                            background: 'linear-gradient(135deg, #28543f, #606c38)',
+                            boxShadow: '0 4px 10px rgba(40,84,63,0.3)',
                           }}
                         >
                           {rev.avatar}
@@ -697,7 +697,7 @@ const ReviewsPage = () => {
                         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/5 pb-2.5">
                           {/* Tags */}
                           <div className="flex gap-2">
-                            <span className="px-2 py-0.5 rounded text-[8px] font-bold text-amber-400 bg-amber-400/5 border border-amber-500/20 uppercase tracking-widest">
+                            <span className="px-2 py-0.5 rounded text-[8px] font-bold text-sage-300 bg-sage-300/5 border border-sage-500/20 uppercase tracking-widest">
                               {rev.concern}
                             </span>
                             <span className="px-2 py-0.5 rounded text-[8px] font-bold text-white/40 bg-white/5 border border-white/5 uppercase tracking-widest line-clamp-1 max-w-[150px]">
@@ -750,14 +750,14 @@ const ReviewsPage = () => {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full shadow-2xl flex items-center gap-2 border border-amber-500/30"
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full shadow-2xl flex items-center gap-2 border border-sage-500/30"
             style={{
-              background: 'linear-gradient(135deg, rgba(20,0,40,0.95), rgba(40,0,80,0.95))',
+              background: 'linear-gradient(135deg, rgba(8,28,21,0.95), rgba(15,38,29,0.95))',
               backdropFilter: 'blur(20px)',
-              boxShadow: '0 10px 30px rgba(124,58,237,0.3), 0 0 20px rgba(245,158,11,0.2)',
+              boxShadow: '0 10px 30px rgba(40,84,63,0.3), 0 0 20px rgba(163,177,138,0.2)',
             }}
           >
-            <span className="text-sm font-semibold text-amber-200">
+            <span className="text-sm font-semibold text-sage-200">
               {toastMessage}
             </span>
           </motion.div>

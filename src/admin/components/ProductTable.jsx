@@ -83,8 +83,12 @@ export default function ProductTable() {
                 transition={{ delay: i * 0.05 }}
               >
                 <td>
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center text-xl admin-glass">
-                    {product.emoji || product.images?.[0] || '🧴'}
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden admin-glass">
+                    {product.image ? (
+                      <img src={product.image} alt={product.name} className="w-full h-full object-contain p-1" />
+                    ) : (
+                      <span className="text-xl">{product.emoji || '🧴'}</span>
+                    )}
                   </div>
                 </td>
                 <td className="font-medium">{product.name}</td>

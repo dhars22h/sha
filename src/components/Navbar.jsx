@@ -82,7 +82,7 @@ export default function Navbar() {
                         <span
                           className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300"
                           style={{
-                            background: 'linear-gradient(90deg, #f59e0b, #db2777)',
+                            background: 'linear-gradient(90deg, #a3b18a, #606c38)',
                             width: isActive ? '100%' : '0%',
                           }}
                         />
@@ -114,7 +114,7 @@ export default function Navbar() {
                     {wishlistCount > 0 && (
                       <motion.span
                         className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center text-white"
-                        style={{ background: 'linear-gradient(135deg, #db2777, #f43f5e)' }}
+                        style={{ background: 'linear-gradient(135deg, #28543f, #588157)' }}
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                       >
@@ -135,7 +135,7 @@ export default function Navbar() {
                     {cartCount > 0 && (
                       <motion.span
                         className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center text-white"
-                        style={{ background: 'linear-gradient(135deg, #db2777, #7c3aed)' }}
+                        style={{ background: 'linear-gradient(135deg, #606c38, #28543f)' }}
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                       >
@@ -188,7 +188,7 @@ export default function Navbar() {
                       className="flex-1 bg-transparent text-white placeholder-white/40 text-sm outline-none"
                       autoFocus
                     />
-                    <button type="submit" className="text-sm text-amber-400 font-semibold hover:text-amber-300">
+                    <button type="submit" className="text-sm text-sage-300 font-semibold hover:text-sage-200">
                       Search
                     </button>
                   </form>
@@ -210,7 +210,7 @@ export default function Navbar() {
             <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" onClick={() => setMenuOpen(false)} />
             <motion.div
               className="absolute top-16 left-0 right-0 py-6 px-4"
-              style={{ background: 'rgba(10,0,20,0.95)', borderBottom: '1px solid rgba(245,158,11,0.2)' }}
+              style={{ background: 'rgba(5,18,13,0.98)', borderBottom: '1px solid rgba(163,177,138,0.2)' }}
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -20, opacity: 0 }}

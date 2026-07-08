@@ -1,39 +1,39 @@
 /* Admin Dashboard Styles */
 .admin-bg {
-  background: #0a0014;
+  background: #040e0a;
   min-height: 100vh;
 }
 
 .admin-glass {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .admin-glass-strong {
-  background: rgba(20, 0, 40, 0.85);
+  background: rgba(4, 14, 10, 0.85);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(163, 177, 138, 0.15);
 }
 
 .admin-card {
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(219, 39, 119, 0.06));
-  border: 1px solid rgba(245, 158, 11, 0.18);
+  background: linear-gradient(135deg, rgba(40, 84, 63, 0.12), rgba(96, 108, 56, 0.06));
+  border: 1px solid rgba(163, 177, 138, 0.18);
   backdrop-filter: blur(16px);
   border-radius: 16px;
   transition: all 0.3s ease;
 }
 
 .admin-card:hover {
-  border-color: rgba(245, 158, 11, 0.35);
-  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.2);
+  border-color: rgba(163, 177, 138, 0.35);
+  box-shadow: 0 12px 40px rgba(40, 84, 63, 0.2);
 }
 
 .admin-input {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   color: #fff;
   padding: 0.75rem 1rem;
@@ -43,16 +43,16 @@
 }
 
 .admin-input:focus {
-  border-color: rgba(124, 58, 237, 0.6);
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+  border-color: rgba(163, 177, 138, 0.6);
+  box-shadow: 0 0 0 3px rgba(163, 177, 138, 0.15);
 }
 
 .admin-input::placeholder {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .admin-btn-primary {
-  background: linear-gradient(135deg, #7c3aed, #db2777, #f59e0b);
+  background: linear-gradient(135deg, #28543f, #606c38, #a3b18a);
   background-size: 200% 200%;
   border: none;
   border-radius: 12px;
@@ -66,12 +66,12 @@
 
 .admin-btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 8px 30px rgba(40, 84, 63, 0.4);
 }
 
 .admin-btn-secondary {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   color: rgba(255, 255, 255, 0.8);
   font-weight: 500;
@@ -81,12 +81,12 @@
 }
 
 .admin-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(163, 177, 138, 0.35);
 }
 
 .admin-table th {
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(40, 84, 63, 0.15);
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.75rem;
   font-weight: 600;
@@ -103,7 +103,7 @@
 }
 
 .admin-table tr:hover td {
-  background: rgba(124, 58, 237, 0.05);
+  background: rgba(40, 84, 63, 0.05);
 }
 
 .status-badge {
@@ -139,18 +139,18 @@
 }
 
 .admin-sidebar-link:hover {
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(40, 84, 63, 0.1);
   color: rgba(255, 255, 255, 0.9);
 }
 
 .admin-sidebar-link.active {
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(219, 39, 119, 0.15));
+  background: linear-gradient(135deg, rgba(40, 84, 63, 0.25), rgba(96, 108, 56, 0.15));
   color: #fff;
-  border: 1px solid rgba(245, 158, 11, 0.25);
+  border: 1px solid rgba(163, 177, 138, 0.25);
 }
 
 .admin-gradient-text {
-  background: linear-gradient(135deg, #ffd700, #f59e0b, #db2777, #7c3aed);
+  background: linear-gradient(135deg, #fdfbf7, #a3b18a, #606c38, #e9e0d2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

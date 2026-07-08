@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiShoppingCart, FiArrowLeft } from 'react-icons/fi';
 import { useCart } from '../context/CartContext';
@@ -22,13 +22,13 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <section className="pt-28 pb-24 min-h-screen flex items-center justify-center" style={{ background: '#06000f' }}>
+      <section className="pt-28 pb-24 min-h-screen flex items-center justify-center" style={{ background: '#071911' }}>
         <motion.div
           className="text-center glass rounded-3xl p-12 max-w-md mx-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <FiShoppingCart className="text-6xl text-purple-400 mx-auto mb-4" />
+          <FiShoppingCart className="text-6xl text-sage-300 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-white mb-2 font-luxury">Your Cart is Empty</h1>
           <p className="text-white/50 mb-6">Discover our luxury collection and treat your hair to the best.</p>
           <Link to="/products">
@@ -42,7 +42,7 @@ export default function CartPage() {
   }
 
   return (
-    <section className="pt-28 pb-24 min-h-screen" style={{ background: '#06000f' }}>
+    <section className="pt-28 pb-24 min-h-screen" style={{ background: '#071911' }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
           <Link to="/products" className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm mb-4 transition-colors">

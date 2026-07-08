@@ -11,7 +11,7 @@ const concerns = ['Hair Fall', 'Dandruff', 'Frizz Control', 'Split Ends', 'Hair 
 const ingredients = ['Argan Oil', 'Coconut Oil', 'Aloe Vera', 'Keratin', 'Biotin', 'Tea Tree Oil', 'Rosemary Extract', 'Shea Butter'];
 const fragrances = ['Rose', 'Lavender', 'Jasmine', 'Vanilla', 'Ocean Fresh', 'Coconut', 'Unscented'];
 const bottleSizes = ['100ml', '250ml', '500ml', '1 Liter'];
-const bottleDesigns = ['Classic Gold', 'Luxury Purple', 'Rose Gold', 'Premium Black'];
+const bottleDesigns = ['Forest Emerald', 'Sage Botanical', 'Olive Wellness', 'Earth Clay'];
 
 const initialFormula = {
   hairType: 'Dry Hair',
@@ -19,7 +19,7 @@ const initialFormula = {
   ingredients: ['Argan Oil'],
   fragrance: 'Rose',
   bottleSize: '250ml',
-  bottleDesign: 'Classic Gold',
+  bottleDesign: 'Forest Emerald',
   customerName: '',
   productName: 'Shan Luxe Blend',
   message: '',
@@ -48,9 +48,9 @@ export default function ShampooConfigurator() {
     reviews: 0,
     category: 'Custom Shampoo',
     badge: 'Custom',
-    color: 'from-purple-500 to-pink-600',
+    color: 'from-emerald-600 to-forest-700',
     emoji: 'S',
-    bgColor: 'from-purple-900/30 to-pink-900/20',
+    bgColor: 'from-emerald-950/30 to-forest-900/20',
     customFormula: formula,
   };
 

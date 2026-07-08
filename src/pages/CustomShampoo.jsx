@@ -12,12 +12,12 @@ const bubbles = [
 
 export default function CustomShampoo() {
   return (
-    <section className="pt-28 pb-24 min-h-screen relative overflow-hidden" style={{ background: '#06000f' }}>
+    <section className="pt-28 pb-24 min-h-screen relative overflow-hidden" style={{ background: '#071911' }}>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            'radial-gradient(circle at 20% 12%, rgba(245,158,11,0.16) 0%, transparent 34%), radial-gradient(circle at 82% 24%, rgba(219,39,119,0.18) 0%, transparent 36%), radial-gradient(circle at 45% 75%, rgba(124,58,237,0.16) 0%, transparent 42%)',
+            'radial-gradient(circle at 20% 12%, rgba(163,177,138,0.15) 0%, transparent 34%), radial-gradient(circle at 82% 24%, rgba(96,108,56,0.12) 0%, transparent 36%), radial-gradient(circle at 45% 75%, rgba(40,84,63,0.12) 0%, transparent 42%)',
         }}
       />
 
@@ -30,9 +30,9 @@ export default function CustomShampoo() {
             height: bubble.size,
             left: bubble.left,
             top: bubble.top,
-            background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.58), rgba(219,39,119,0.18), rgba(124,58,237,0.04))',
+            background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.58), rgba(96,108,56,0.15), rgba(40,84,63,0.04))',
             border: '1px solid rgba(255,255,255,0.22)',
-            boxShadow: 'inset 0 0 22px rgba(255,255,255,0.18), 0 18px 55px rgba(124,58,237,0.16)',
+            boxShadow: 'inset 0 0 22px rgba(255,255,255,0.18), 0 18px 55px rgba(40,84,63,0.15)',
           }}
           animate={{ y: [0, -24, 0], x: [0, 12, 0], opacity: [0.35, 0.7, 0.35] }}
           transition={{ duration: 6 + index, delay: bubble.delay, repeat: Infinity, ease: 'easeInOut' }}
@@ -64,7 +64,7 @@ export default function CustomShampoo() {
               { icon: FiAward, label: 'Label' },
             ].map(({ icon: Icon, label }) => (
               <div key={label} className="text-center rounded-2xl bg-white/5 border border-white/10 py-4 px-2">
-                <Icon className="mx-auto mb-2 text-amber-200" size={20} />
+                <Icon className="mx-auto mb-2 text-sage-300" size={20} />
                 <p className="text-xs font-semibold text-white/65">{label}</p>
               </div>
             ))}

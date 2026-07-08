@@ -11,7 +11,7 @@ const HeaderBubbles = () => {
     y: Math.random() * 80 + 10,
     delay: Math.random() * 3,
     duration: Math.random() * 8 + 6,
-    color: ['#ffd700', '#db2777', '#7c3aed', '#fbbf24', '#f472b6'][Math.floor(Math.random() * 5)],
+    color: ['#a3b18a', '#606c38', '#28543f', '#588157', '#b5c49f'][Math.floor(Math.random() * 5)],
   }));
 
   return (
@@ -103,7 +103,7 @@ const Contact = () => {
       title: "Call Our Atelier",
       val: "+91 98765 43210",
       desc: "Mon - Sun, 9am to 6pm IST",
-      color: "from-amber-400 to-orange-500",
+      color: "from-sage-400 to-emerald-600",
       href: "tel:+919876543210"
     },
     {
@@ -111,7 +111,7 @@ const Contact = () => {
       title: "Write to Us",
       val: "hello@shansshampoo.com",
       desc: "For general inquiries & partnerships",
-      color: "from-pink-500 to-rose-600",
+      color: "from-emerald-600 to-forest-700",
       href: "mailto:hello@shansshampoo.com"
     },
     {
@@ -119,18 +119,18 @@ const Contact = () => {
       title: "Visit Our Headquarters",
       val: "Atelier Shan, Bandra West",
       desc: "Mumbai, MH - 400050, India",
-      color: "from-purple-500 to-violet-600",
+      color: "from-olive-500 to-sage-600",
       href: "#map"
     }
   ];
 
   return (
-    <div className="min-h-screen pt-28 pb-20 relative bg-[#0a0014] text-white">
+    <div className="min-h-screen pt-28 pb-20 relative bg-[#071911] text-white">
       {/* Background radial gradients */}
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{
-          backgroundImage: 'radial-gradient(circle at 50% 20%, rgba(124,58,237,0.06) 0%, transparent 60%), radial-gradient(circle at 10% 70%, rgba(219,39,119,0.05) 0%, transparent 50%), radial-gradient(circle at 90% 80%, rgba(245,158,11,0.04) 0%, transparent 50%)',
+          backgroundImage: 'radial-gradient(circle at 50% 20%, rgba(96,108,56,0.06) 0%, transparent 60%), radial-gradient(circle at 10% 70%, rgba(40,84,63,0.05) 0%, transparent 50%), radial-gradient(circle at 90% 80%, rgba(163,177,138,0.04) 0%, transparent 50%)',
         }}
       />
 
@@ -146,7 +146,7 @@ const Contact = () => {
               transition={{ duration: 0.6 }}
               className="mb-4"
             >
-              <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest gold-gradient border border-amber-500/30 bg-amber-500/5">
+              <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest gold-gradient border border-sage-500/30 bg-sage-500/5">
                 ✦ Shan's Shampoo Care Concierge ✦
               </span>
             </motion.div>
@@ -283,7 +283,7 @@ const Contact = () => {
                 <div
                   className="absolute rounded-full w-40 h-40 opacity-25 filter blur-3xl"
                   style={{
-                    background: 'radial-gradient(circle, rgba(124,58,237,0.3) 0%, rgba(219,39,119,0.2) 60%, transparent 100%)',
+                    background: 'radial-gradient(circle, rgba(40,84,63,0.3) 0%, rgba(96,108,56,0.2) 60%, transparent 100%)',
                     left: '30%',
                     top: '20%'
                   }}
@@ -294,13 +294,13 @@ const Contact = () => {
                   
                   {/* Pin Circle Wave */}
                   <div className="relative flex h-8 w-8 items-center justify-center">
-                    <span className="pulse-ring absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-60"></span>
-                    <div className="h-3.5 w-3.5 rounded-full bg-gradient-to-r from-amber-400 to-pink-500 border-2 border-white shadow-2xl relative z-10" />
+                    <span className="pulse-ring absolute inline-flex h-full w-full rounded-full bg-sage-400 opacity-60"></span>
+                    <div className="h-3.5 w-3.5 rounded-full bg-gradient-to-r from-sage-400 to-emerald-600 border-2 border-white shadow-2xl relative z-10" />
                   </div>
                   
                   {/* Location Tag */}
                   <motion.div
-                    className="mt-1 px-2.5 py-1 rounded bg-[#0a0014]/90 border border-amber-500/40 text-[9px] font-bold text-white uppercase tracking-wider shadow-2xl backdrop-blur-md"
+                    className="mt-1 px-2.5 py-1 rounded bg-[#071911]/90 border border-sage-500/40 text-[9px] font-bold text-white uppercase tracking-wider shadow-2xl backdrop-blur-md"
                     animate={{ y: [0, -3, 0] }}
                     transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
                   >
@@ -398,7 +398,7 @@ const Contact = () => {
                           value={formData.name}
                           onChange={handleChange}
                           placeholder="e.g. Priya Sharma"
-                          className="w-full px-4 py-3 rounded-xl text-xs bg-white/5 border border-white/10 text-white focus:outline-none focus:border-amber-500/60 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all duration-300 placeholder-white/20"
+                          className="w-full px-4 py-3 rounded-xl text-xs bg-white/5 border border-white/10 text-white focus:outline-none focus:border-sage-500/60 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(163,177,138,0.15)] transition-all duration-300 placeholder-white/20"
                         />
                       </div>
 
@@ -412,7 +412,7 @@ const Contact = () => {
                           value={formData.email}
                           onChange={handleChange}
                           placeholder="e.g. priya@sharma.com"
-                          className="w-full px-4 py-3 rounded-xl text-xs bg-white/5 border border-white/10 text-white focus:outline-none focus:border-amber-500/60 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all duration-300 placeholder-white/20"
+                          className="w-full px-4 py-3 rounded-xl text-xs bg-white/5 border border-white/10 text-white focus:outline-none focus:border-sage-500/60 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(163,177,138,0.15)] transition-all duration-300 placeholder-white/20"
                         />
                       </div>
                     </div>
@@ -427,7 +427,7 @@ const Contact = () => {
                           value={formData.phone}
                           onChange={handleChange}
                           placeholder="e.g. +91 98765 43210"
-                          className="w-full px-4 py-3 rounded-xl text-xs bg-white/5 border border-white/10 text-white focus:outline-none focus:border-amber-500/60 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all duration-300 placeholder-white/20"
+                          className="w-full px-4 py-3 rounded-xl text-xs bg-white/5 border border-white/10 text-white focus:outline-none focus:border-sage-500/60 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(163,177,138,0.15)] transition-all duration-300 placeholder-white/20"
                         />
                       </div>
 
@@ -438,7 +438,7 @@ const Contact = () => {
                           name="subject"
                           value={formData.subject}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-xl text-xs bg-[#140b24] border border-white/10 text-white focus:outline-none focus:border-amber-500/60 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all duration-300"
+                          className="w-full px-4 py-3 rounded-xl text-xs bg-[#05120d] border border-white/10 text-white focus:outline-none focus:border-sage-500/60 focus:shadow-[0_0_15px_rgba(163,177,138,0.15)] transition-all duration-300"
                         >
                           <option value="General Inquiry">General Inquiry</option>
                           <option value="Product Question">Product Concern / Consultation</option>
@@ -458,7 +458,7 @@ const Contact = () => {
                         value={formData.message}
                         onChange={handleChange}
                         placeholder="Write your message here... Let us know about your hair type or any questions."
-                        className="w-full px-4 py-3 rounded-xl text-xs bg-white/5 border border-white/10 text-white focus:outline-none focus:border-amber-500/60 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all duration-300 placeholder-white/20 resize-none"
+                        className="w-full px-4 py-3 rounded-xl text-xs bg-white/5 border border-white/10 text-white focus:outline-none focus:border-sage-500/60 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(163,177,138,0.15)] transition-all duration-300 placeholder-white/20 resize-none"
                       />
                     </div>
 
@@ -507,7 +507,7 @@ const Contact = () => {
               <div
                 className="absolute w-40 h-40 rounded-full opacity-10 filter blur-2xl pointer-events-none"
                 style={{
-                  background: 'linear-gradient(135deg, #7c3aed, #db2777)',
+                  background: 'linear-gradient(135deg, #28543f, #606c38)',
                   right: '-20px',
                   bottom: '-20px'
                 }}
@@ -525,14 +525,14 @@ const Contact = () => {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full shadow-2xl flex items-center gap-2 border border-amber-500/30"
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full shadow-2xl flex items-center gap-2 border border-sage-500/30"
             style={{
-              background: 'linear-gradient(135deg, rgba(20,0,40,0.95), rgba(40,0,80,0.95))',
+              background: 'linear-gradient(135deg, rgba(8,28,21,0.95), rgba(15,38,29,0.95))',
               backdropFilter: 'blur(20px)',
-              boxShadow: '0 10px 30px rgba(124,58,237,0.3), 0 0 20px rgba(245,158,11,0.2)',
+              boxShadow: '0 10px 30px rgba(40,84,63,0.3), 0 0 20px rgba(163,177,138,0.2)',
             }}
           >
-            <span className="text-sm font-semibold text-amber-200">
+            <span className="text-sm font-semibold text-sage-200">
               {toastMessage}
             </span>
           </motion.div>

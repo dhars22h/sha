@@ -1,150 +1,42 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FiArrowRight, FiPlay } from 'react-icons/fi';
 import AnimatedLogo from './AnimatedLogo';
-
-const FloatingOrb = ({ x, y, size, color, delay }) => (
-  <motion.div
-    className="absolute rounded-full pointer-events-none"
-    style={{
-      left: `${x}%`,
-      top: `${y}%`,
-      width: size,
-      height: size,
-      background: `radial-gradient(circle, ${color}40, transparent 70%)`,
-      filter: `blur(${size / 3}px)`,
-    }}
-    animate={{
-      scale: [1, 1.3, 1],
-      opacity: [0.4, 0.7, 0.4],
-      x: [0, 20, -10, 0],
-      y: [0, -15, 10, 0],
-    }}
-    transition={{ duration: 8 + delay, repeat: Infinity, delay, ease: 'easeInOut' }}
-  />
-);
+import heroVid from '../assets/videos/hero_bg.mp4';
+import arganImg from '../assets/images/argan_shampoo.png';
 
 const ShampooBottle = () => (
   <motion.div
-    className="relative"
-    animate={{ y: [0, -20, 0] }}
-    transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-    style={{ filter: 'drop-shadow(0 30px 60px rgba(124,58,237,0.5))' }}
+    className="relative z-10"
+    animate={{ y: [0, -12, 0] }}
+    transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
   >
-    {/* Stylized shampoo bottle using CSS */}
-    <div className="relative" style={{ width: 160, height: 280 }}>
-      {/* Bottle body */}
-      <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2"
+    {/* Realistic bottle image showcase */}
+    <div className="relative group">
+      <img
+        src={arganImg}
+        alt="Moroccan Argan Oil Shampoo"
+        className="w-64 sm:w-72 lg:w-80 h-auto rounded-3xl border border-white/10 relative z-10 transition-transform duration-500 group-hover:scale-105"
         style={{
-          width: 100,
-          height: 220,
-          borderRadius: '50px 50px 30px 30px',
-          background: 'linear-gradient(135deg, rgba(124,58,237,0.9), rgba(219,39,119,0.8), rgba(245,158,11,0.6))',
-          border: '2px solid rgba(255,255,255,0.2)',
-          boxShadow: '0 0 40px rgba(124,58,237,0.6), inset 0 0 30px rgba(255,255,255,0.1)',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        {/* Shine streak */}
-        <motion.div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: '20%',
-            width: '15%',
-            height: '100%',
-            background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.4), transparent)',
-            borderRadius: 10,
-          }}
-          animate={{ opacity: [0.3, 0.8, 0.3] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-        {/* Label area */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '25%',
-            left: '10%',
-            right: '10%',
-            bottom: '20%',
-            background: 'rgba(255,255,255,0.1)',
-            borderRadius: 10,
-            border: '1px solid rgba(255,255,255,0.2)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backdropFilter: 'blur(5px)',
-          }}
-        >
-          <span style={{ fontSize: 9, color: '#fcd34d', letterSpacing: 2, fontFamily: 'Inter', textTransform: 'uppercase', textAlign: 'center', padding: '0 4px' }}>
-            Shan's<br/>Shampoo
-          </span>
-          <span style={{ fontSize: 7, color: 'rgba(255,255,255,0.6)', marginTop: 4, letterSpacing: 1 }}>LUXE</span>
-        </div>
-      </div>
-
-      {/* Bottle cap */}
-      <div
-        className="absolute left-1/2 -translate-x-1/2"
-        style={{
-          width: 45,
-          height: 40,
-          top: 15,
-          borderRadius: '10px 10px 0 0',
-          background: 'linear-gradient(135deg, #fcd34d, #f59e0b)',
-          border: '1px solid rgba(255,255,255,0.3)',
-          boxShadow: '0 0 15px rgba(245,158,11,0.5)',
+          boxShadow: '0 25px 60px rgba(0,0,0,0.6), inset 0 0 30px rgba(255,255,255,0.05)',
+          filter: 'drop-shadow(0 0 40px rgba(163,177,138,0.25))',
         }}
       />
-
-      {/* Pump nozzle */}
-      <div
-        className="absolute left-1/2 -translate-x-1/2"
-        style={{
-          width: 10,
-          height: 30,
-          top: 0,
-          borderRadius: 5,
-          background: 'linear-gradient(90deg, #fbbf24, #f59e0b)',
-        }}
-      />
-
-      {/* Liquid drips */}
-      {[0, 1, 2].map(i => (
-        <motion.div
-          key={i}
-          className="absolute"
-          style={{
-            width: 6,
-            height: 15,
-            borderRadius: '0 0 5px 5px',
-            background: 'linear-gradient(180deg, rgba(219,39,119,0.8), rgba(124,58,237,0.4))',
-            left: `${35 + i * 15}%`,
-            top: '55%',
-          }}
-          animate={{
-            height: [8, 20, 8],
-            opacity: [0.5, 1, 0.5],
-          }}
-          transition={{ duration: 2, delay: i * 0.5, repeat: Infinity }}
-        />
-      ))}
+      {/* Decorative leaf reflection glow */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-sage-500/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
     </div>
 
-    {/* Glow ring */}
+    {/* Glow ring shadow */}
     <motion.div
-      className="absolute -bottom-4 left-1/2 -translate-x-1/2 rounded-full"
+      className="absolute -bottom-6 left-1/2 -translate-x-1/2 rounded-full pointer-events-none"
       style={{
-        width: 120,
-        height: 20,
-        background: 'radial-gradient(ellipse, rgba(124,58,237,0.6), transparent 70%)',
-        filter: 'blur(10px)',
+        width: 160,
+        height: 15,
+        background: 'radial-gradient(ellipse, rgba(163,177,138,0.4), transparent 70%)',
+        filter: 'blur(8px)',
       }}
-      animate={{ opacity: [0.4, 0.9, 0.4] }}
+      animate={{ opacity: [0.5, 0.9, 0.5], scale: [1, 1.15, 1] }}
       transition={{ duration: 3, repeat: Infinity }}
     />
   </motion.div>
@@ -154,42 +46,35 @@ const Hero = () => {
   const navigate = useNavigate();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
-  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -80]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <section
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
-      style={{
-        background: 'radial-gradient(ellipse at top, #1a0033 0%, #0a0014 40%, #000 100%)',
-      }}
+      style={{ background: '#05120d' }}
     >
-      {/* Background mesh gradient */}
+      {/* Full-bleed background cinematic video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover opacity-25 z-0"
+      >
+        <source src={heroVid} type="video/mp4" />
+      </video>
+
+      {/* Forest ambient overlay */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none z-0"
         style={{
           backgroundImage: `
-            radial-gradient(circle at 20% 20%, rgba(124,58,237,0.15) 0%, transparent 50%),
-            radial-gradient(circle at 80% 80%, rgba(219,39,119,0.12) 0%, transparent 50%),
-            radial-gradient(circle at 50% 50%, rgba(245,158,11,0.05) 0%, transparent 60%)
+            radial-gradient(circle at 10% 20%, rgba(40,84,63,0.15) 0%, transparent 50%),
+            radial-gradient(circle at 90% 80%, rgba(96,108,56,0.1) 0%, transparent 50%)
           `
-        }}
-      />
-
-      {/* Floating orbs */}
-      <FloatingOrb x={5} y={10} size={300} color="#7c3aed" delay={0} />
-      <FloatingOrb x={75} y={60} size={400} color="#db2777" delay={2} />
-      <FloatingOrb x={50} y={80} size={250} color="#f59e0b" delay={4} />
-      <FloatingOrb x={85} y={15} size={200} color="#7c3aed" delay={1} />
-      <FloatingOrb x={15} y={70} size={180} color="#db2777" delay={3} />
-
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-5"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-          backgroundSize: '60px 60px'
         }}
       />
 
@@ -197,22 +82,22 @@ const Hero = () => {
         style={{ y, opacity }}
         className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full"
       >
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 py-20">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 py-16">
           {/* Left content */}
           <div className="flex-1 text-center lg:text-left">
             {/* Badge */}
             <motion.div
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
               style={{
-                background: 'rgba(245,158,11,0.1)',
-                border: '1px solid rgba(245,158,11,0.3)',
+                background: 'rgba(163,177,138,0.08)',
+                border: '1px solid rgba(163,177,138,0.25)',
               }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
               <span className="text-xs font-semibold uppercase tracking-widest gold-gradient">
-                ✦ Premium Collection 2025
+                ✦ Organic Hair Care ✦
               </span>
             </motion.div>
 
@@ -228,25 +113,23 @@ const Hero = () => {
 
             {/* Heading */}
             <motion.h2
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight font-luxury"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
-              Transform Your Hair Into{' '}
-              <span className="gradient-text">Pure Luxury</span>
+              Nourish Strands with{' '}
+              <span className="gradient-text">Pure Botanical</span> Science
             </motion.h2>
 
             {/* Subheading */}
             <motion.p
-              className="text-lg text-white/60 mb-8 max-w-xl mx-auto lg:mx-0"
-              style={{ fontFamily: "'Inter', sans-serif" }}
+              className="text-lg text-white/70 mb-8 max-w-xl mx-auto lg:mx-0 font-medium"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
             >
-              Premium shampoo crafted for shine, strength, and confidence. Experience salon-grade hair care from the comfort of your home.
+              Experience professional, natural hair care crafted from organic herbs, cold-pressed oils, and essential nutrients. Free from sulfates, parabens, and artificial coloring.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -262,7 +145,7 @@ const Hero = () => {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate('/products')}
               >
-                Shop Now
+                Shop Collection
                 <motion.span
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
@@ -274,21 +157,21 @@ const Hero = () => {
               <motion.button
                 className="px-8 py-4 rounded-full font-semibold text-white text-lg flex items-center justify-center gap-2 group"
                 style={{
-                  background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(255,255,255,0.2)',
+                  background: 'rgba(255,255,255,0.03)',
+                  border: '1px solid rgba(255,255,255,0.1)',
                   backdropFilter: 'blur(10px)',
                 }}
-                whileHover={{ scale: 1.05, borderColor: 'rgba(245,158,11,0.5)' }}
+                whileHover={{ scale: 1.05, borderColor: 'rgba(163,177,138,0.45)' }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate('/products')}
               >
                 <span
                   className="w-8 h-8 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"
-                  style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)' }}
+                  style={{ background: 'linear-gradient(135deg, #28543f, #606c38)' }}
                 >
-                  <FiPlay size={12} />
+                  <FiPlay size={12} className="ml-0.5" />
                 </span>
-                Explore Collection
+                Watch Botanical Story
               </motion.button>
             </motion.div>
 
@@ -301,8 +184,8 @@ const Hero = () => {
             >
               {[
                 { value: '50K+', label: 'Happy Customers' },
-                { value: '100%', label: 'Natural Ingredients' },
-                { value: '4.9★', label: 'Average Rating' },
+                { value: '100%', label: 'Organic Extracts' },
+                { value: '4.9★', label: 'Customer Rating' },
               ].map(({ value, label }) => (
                 <div key={label} className="text-center lg:text-left">
                   <div className="text-2xl font-bold gold-gradient">{value}</div>
@@ -315,25 +198,11 @@ const Hero = () => {
           {/* Right content – Bottle */}
           <motion.div
             className="flex-shrink-0 flex items-center justify-center"
-            initial={{ opacity: 0, scale: 0.6, rotate: -10 }}
+            initial={{ opacity: 0, scale: 0.6, rotate: -8 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ delay: 0.4, type: 'spring', stiffness: 80 }}
           >
-            <div className="relative">
-              {/* Glow backdrop */}
-              <div
-                className="absolute inset-0 rounded-full pointer-events-none"
-                style={{
-                  background: 'radial-gradient(circle, rgba(124,58,237,0.3), rgba(219,39,119,0.2), transparent 70%)',
-                  width: 350,
-                  height: 350,
-                  top: -35,
-                  left: -95,
-                  filter: 'blur(30px)',
-                }}
-              />
-              <ShampooBottle />
-            </div>
+            <ShampooBottle />
           </motion.div>
         </div>
       </motion.div>
@@ -341,13 +210,13 @@ const Hero = () => {
       {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        animate={{ y: [0, 10, 0] }}
+        animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <span className="text-xs text-white/30 uppercase tracking-widest">Scroll</span>
+        <span className="text-xs text-white/40 uppercase tracking-widest">Scroll</span>
         <div
           className="w-0.5 h-8 rounded-full"
-          style={{ background: 'linear-gradient(180deg, rgba(245,158,11,0.6), transparent)' }}
+          style={{ background: 'linear-gradient(180deg, rgba(163,177,138,0.5), transparent)' }}
         />
       </motion.div>
     </section>

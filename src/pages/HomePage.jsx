@@ -9,7 +9,7 @@ const SectionDivider = () => (
   <div className="relative h-px overflow-hidden">
     <div
       className="absolute inset-0"
-      style={{ background: 'linear-gradient(90deg, transparent, rgba(245,158,11,0.4), rgba(124,58,237,0.4), rgba(219,39,119,0.4), transparent)' }}
+      style={{ background: 'linear-gradient(90deg, transparent, rgba(163,177,138,0.4), rgba(96,108,56,0.4), rgba(40,84,63,0.4), transparent)' }}
     />
   </div>
 );

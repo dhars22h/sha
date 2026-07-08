@@ -11,7 +11,7 @@ const GlobalBubbles = () => {
     x: Math.random() * 100,
     delay: Math.random() * 8,
     duration: Math.random() * 10 + 8,
-    color: ['#7c3aed', '#db2777', '#f59e0b', '#a78bfa', '#f472b6'][Math.floor(Math.random() * 5)],
+    color: ['#a3b18a', '#606c38', '#28543f', '#588157', '#b5c49f'][Math.floor(Math.random() * 5)],
   }));
 
   return (
@@ -51,7 +51,7 @@ const ScrollTop = () => {
   return (
     <motion.button
       className="fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"
-      style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)', boxShadow: '0 0 20px rgba(124,58,237,0.4)' }}
+      style={{ background: 'linear-gradient(135deg, #28543f, #606c38)', boxShadow: '0 0 20px rgba(40,84,63,0.4)' }}
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : 0 }}
@@ -71,7 +71,7 @@ export default function MainLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="relative min-h-screen" style={{ background: '#0a0014' }}>
+    <div className="relative min-h-screen" style={{ background: '#071911' }}>
       <GlobalBubbles />
       <div className="relative z-10">
         <Navbar />

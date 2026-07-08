@@ -13,11 +13,11 @@ const BrandLogo = ({ brand, index }) => (
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true }}
     transition={{ delay: index * 0.1 }}
-    whileHover={{ scale: 1.05, borderColor: 'rgba(245,158,11,0.3)' }}
+    whileHover={{ scale: 1.05, borderColor: 'rgba(163,177,138,0.3)' }}
   >
     <motion.div
       className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
-      style={{ background: 'radial-gradient(circle at center, rgba(245,158,11,0.06), transparent 70%)' }}
+      style={{ background: 'radial-gradient(circle at center, rgba(163,177,138,0.06), transparent 70%)' }}
     />
 
     <div className="text-center relative z-10">
@@ -40,7 +40,7 @@ const BrandLogo = ({ brand, index }) => (
 );
 
 const Brands = () => (
-  <section className="py-24 relative" style={{ background: '#06000f' }}>
+  <section className="py-24 relative" style={{ background: '#071911' }}>
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.div
         className="text-center mb-16"

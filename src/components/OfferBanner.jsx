@@ -11,9 +11,9 @@ const CountdownBox = ({ value, label }) => (
     <div
       className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl flex items-center justify-center text-2xl sm:text-3xl font-black text-white relative overflow-hidden"
       style={{
-        background: 'linear-gradient(135deg, rgba(124,58,237,0.5), rgba(219,39,119,0.3))',
-        border: '1px solid rgba(245,158,11,0.4)',
-        boxShadow: '0 0 20px rgba(124,58,237,0.3)',
+        background: 'linear-gradient(135deg, rgba(40,84,63,0.5), rgba(96,108,56,0.3))',
+        border: '1px solid rgba(163,177,138,0.4)',
+        boxShadow: '0 0 20px rgba(40,84,63,0.3)',
         fontFamily: "'Playfair Display', serif",
       }}
     >
@@ -35,7 +35,7 @@ const FloatingBubble = ({ size, x, y, delay }) => (
       height: size,
       left: `${x}%`,
       top: `${y}%`,
-      background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), rgba(124,58,237,0.2))',
+      background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), rgba(163,177,138,0.2))',
       border: '1px solid rgba(255,255,255,0.3)',
     }}
     animate={{
@@ -71,9 +71,9 @@ const OfferBanner = () => {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            radial-gradient(circle at 20% 50%, rgba(124,58,237,0.2) 0%, transparent 50%),
-            radial-gradient(circle at 80% 50%, rgba(219,39,119,0.15) 0%, transparent 50%),
-            radial-gradient(circle at 50% 100%, rgba(245,158,11,0.1) 0%, transparent 40%)
+            radial-gradient(circle at 20% 50%, rgba(40,84,63,0.2) 0%, transparent 50%),
+            radial-gradient(circle at 80% 50%, rgba(96,108,56,0.15) 0%, transparent 50%),
+            radial-gradient(circle at 50% 100%, rgba(163,177,138,0.1) 0%, transparent 40%)
           `,
         }}
       />
@@ -82,7 +82,7 @@ const OfferBanner = () => {
       <div
         className="absolute inset-0 pointer-events-none opacity-10"
         style={{
-          backgroundImage: 'linear-gradient(rgba(245,158,11,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(245,158,11,0.3) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(163,177,138,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(163,177,138,0.2) 1px, transparent 1px)',
           backgroundSize: '40px 40px',
         }}
       />
@@ -106,7 +106,7 @@ const OfferBanner = () => {
             width: 60,
             height: 60,
             borderRadius: '50% 50% 30% 30%',
-            background: `linear-gradient(135deg, rgba(${i === 1 ? '124,58,237' : i === 2 ? '219,39,119' : '245,158,11'},0.3), transparent)`,
+            background: `linear-gradient(135deg, rgba(${i === 1 ? '40,84,63' : i === 2 ? '96,108,56' : '163,177,138'},0.3), transparent)`,
             filter: 'blur(8px)',
           }}
           animate={{
@@ -123,17 +123,17 @@ const OfferBanner = () => {
         <motion.div
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
           style={{
-            background: 'rgba(245,158,11,0.15)',
-            border: '1px solid rgba(245,158,11,0.4)',
+            background: 'rgba(163,177,138,0.15)',
+            border: '1px solid rgba(163,177,138,0.4)',
           }}
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          animate={{ boxShadow: ['0 0 0px rgba(245,158,11,0)', '0 0 20px rgba(245,158,11,0.4)', '0 0 0px rgba(245,158,11,0)'] }}
+          animate={{ boxShadow: ['0 0 0px rgba(163,177,138,0)', '0 0 20px rgba(163,177,138,0.4)', '0 0 0px rgba(163,177,138,0)'] }}
           transition={{ boxShadow: { duration: 2, repeat: Infinity } }}
         >
           <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-          <span className="text-xs font-bold uppercase tracking-widest text-amber-400">Limited Time Offer</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-sage-300">Limited Time Offer</span>
         </motion.div>
 
         {/* Heading */}

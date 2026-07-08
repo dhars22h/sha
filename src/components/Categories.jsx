@@ -45,7 +45,7 @@ const CategoryCard = ({ category, index, onClick }) => (
     <div
       className="mt-4 h-0.5 w-0 group-hover:w-full mx-auto transition-all duration-500 rounded-full"
       style={{
-        background: `linear-gradient(90deg, ${category.color.includes('amber') ? '#f59e0b' : category.color.includes('teal') ? '#14b8a6' : category.color.includes('purple') ? '#7c3aed' : category.color.includes('blue') ? '#3b82f6' : category.color.includes('green') ? '#22c55e' : '#ec4899'}, transparent)`,
+        background: `linear-gradient(90deg, ${category.color.includes('emerald') ? '#10b981' : category.color.includes('sage') ? '#a3b18a' : category.color.includes('olive') ? '#606c38' : category.color.includes('forest') ? '#28543f' : category.color.includes('teal') ? '#14b8a6' : '#28543f'}, transparent)`,
       }}
     />
   </motion.div>
@@ -54,11 +54,11 @@ const CategoryCard = ({ category, index, onClick }) => (
 const Categories = () => {
   const navigate = useNavigate();
   return (
-  <section className="py-24 relative" style={{ background: 'rgba(10,0,20,0.9)' }}>
+  <section className="py-24 relative" style={{ background: 'rgba(7,25,17,0.9)' }}>
     <div
       className="absolute inset-0 pointer-events-none"
       style={{
-        backgroundImage: 'radial-gradient(circle at 50% 0%, rgba(124,58,237,0.08) 0%, transparent 60%)',
+        backgroundImage: 'radial-gradient(circle at 50% 0%, rgba(163,177,138,0.08) 0%, transparent 60%)',
       }}
     />
 

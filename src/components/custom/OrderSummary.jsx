@@ -32,20 +32,20 @@ export default function OrderSummary({ formula, price, onAddToCart, onSave, onRe
         </div>
       </div>
 
-      <div className="rounded-3xl p-5 mb-5 relative overflow-hidden" style={{ background: 'linear-gradient(145deg, rgba(124,58,237,0.24), rgba(219,39,119,0.16), rgba(245,158,11,0.12))', border: '1px solid rgba(245,158,11,0.22)' }}>
-        <div className="absolute -right-8 -top-10 w-28 h-28 rounded-full bg-pink-400/15 blur-2xl" />
+      <div className="rounded-3xl p-5 mb-5 relative overflow-hidden" style={{ background: 'linear-gradient(145deg, rgba(40,84,63,0.25), rgba(96,108,56,0.15), rgba(163,177,138,0.1))', border: '1px solid rgba(163,177,138,0.2)' }}>
+        <div className="absolute -right-8 -top-10 w-28 h-28 rounded-full bg-emerald-700/10 blur-2xl" />
         <motion.div
           className="mx-auto mb-4 w-24 h-36 rounded-b-3xl rounded-t-xl relative overflow-hidden"
           style={{
             background:
-              formula.bottleDesign === 'Premium Black'
-                ? 'linear-gradient(145deg, #050505, #3f3f46, #b45309)'
-                : formula.bottleDesign === 'Rose Gold'
-                  ? 'linear-gradient(145deg, #f9a8d4, #fb7185, #f59e0b)'
-                  : formula.bottleDesign === 'Luxury Purple'
-                    ? 'linear-gradient(145deg, #7c3aed, #db2777, #f59e0b)'
-                    : 'linear-gradient(145deg, #f59e0b, #fde68a, #7c3aed)',
-            boxShadow: '0 22px 45px rgba(124,58,237,0.32)',
+              formula.bottleDesign === 'Earth Clay'
+                ? 'linear-gradient(145deg, #3d2a1b, #4a3728, #e9e0d2)'
+                : formula.bottleDesign === 'Olive Wellness'
+                  ? 'linear-gradient(145deg, #283618, #606c38, #a3b18a)'
+                  : formula.bottleDesign === 'Sage Botanical'
+                    ? 'linear-gradient(145deg, #2d6a4f, #a3b18a, #fdfbf7)'
+                    : 'linear-gradient(145deg, #0f221c, #1b4332, #a3b18a)',
+            boxShadow: '0 22px 45px rgba(40,84,63,0.3)',
           }}
           animate={{ y: [0, -7, 0] }}
           transition={{ duration: 4, repeat: Infinity }}

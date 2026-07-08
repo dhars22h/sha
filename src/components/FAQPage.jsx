@@ -11,7 +11,7 @@ const HeaderBubbles = () => {
     y: Math.random() * 80 + 10,
     delay: Math.random() * 3,
     duration: Math.random() * 8 + 6,
-    color: ['#ffd700', '#db2777', '#7c3aed', '#fbbf24', '#f472b6'][Math.floor(Math.random() * 5)],
+    color: ['#a3b18a', '#606c38', '#28543f', '#588157', '#b5c49f'][Math.floor(Math.random() * 5)],
   }));
 
   return (
@@ -154,12 +154,12 @@ const FAQPage = ({ setView }) => {
   };
 
   return (
-    <div className="min-h-screen pt-28 pb-20 relative bg-[#0a0014] text-white">
+    <div className="min-h-screen pt-28 pb-20 relative bg-[#071911] text-white">
       {/* Background radial gradients */}
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{
-          backgroundImage: 'radial-gradient(circle at 50% 20%, rgba(124,58,237,0.06) 0%, transparent 60%), radial-gradient(circle at 10% 70%, rgba(219,39,119,0.05) 0%, transparent 50%), radial-gradient(circle at 90% 80%, rgba(245,158,11,0.04) 0%, transparent 50%)',
+          backgroundImage: 'radial-gradient(circle at 50% 20%, rgba(96,108,56,0.06) 0%, transparent 60%), radial-gradient(circle at 10% 70%, rgba(40,84,63,0.05) 0%, transparent 50%), radial-gradient(circle at 90% 80%, rgba(163,177,138,0.04) 0%, transparent 50%)',
         }}
       />
 
@@ -175,7 +175,7 @@ const FAQPage = ({ setView }) => {
               transition={{ duration: 0.6 }}
               className="mb-4"
             >
-              <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest gold-gradient border border-amber-500/30 bg-amber-500/5">
+              <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest gold-gradient border border-sage-500/30 bg-sage-500/5">
                 ✦ Shan's Shampoo Atelier Help Desk ✦
               </span>
             </motion.div>
@@ -261,7 +261,7 @@ const FAQPage = ({ setView }) => {
                         <motion.div
                           layoutId="activeFAQFilter"
                           className="absolute inset-0 rounded-full"
-                          style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)', zIndex: -1 }}
+                          style={{ background: 'linear-gradient(135deg, #28543f, #606c38)', zIndex: -1 }}
                           transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -307,7 +307,7 @@ const FAQPage = ({ setView }) => {
                         }`}
                       >
                         <span className="flex items-center gap-3">
-                          <FiHelpCircle className="text-amber-400 flex-shrink-0" size={18} />
+                          <FiHelpCircle className="text-sage-300 flex-shrink-0" size={18} />
                           <span>{faq.q}</span>
                         </span>
                         
@@ -369,7 +369,7 @@ const FAQPage = ({ setView }) => {
           <div
             className="absolute inset-0 opacity-10 pointer-events-none"
             style={{
-              background: 'radial-gradient(circle at 50% 50%, rgba(245,158,11,0.3) 0%, transparent 60%)',
+              background: 'radial-gradient(circle at 50% 50%, rgba(163,177,138,0.2) 0%, transparent 60%)',
             }}
           />
 

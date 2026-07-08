@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiHeart, FiTrash2 } from 'react-icons/fi';
 import { useWishlist } from '../context/WishlistContext';
@@ -9,7 +9,7 @@ export default function WishlistPage() {
 
   if (items.length === 0) {
     return (
-      <section className="pt-28 pb-24 min-h-screen flex items-center justify-center" style={{ background: '#06000f' }}>
+      <section className="pt-28 pb-24 min-h-screen flex items-center justify-center" style={{ background: '#071911' }}>
         <motion.div
           className="text-center glass rounded-3xl p-12 max-w-md mx-4"
           initial={{ opacity: 0, y: 20 }}
@@ -29,7 +29,7 @@ export default function WishlistPage() {
   }
 
   return (
-    <section className="pt-28 pb-24 min-h-screen" style={{ background: '#06000f' }}>
+    <section className="pt-28 pb-24 min-h-screen" style={{ background: '#071911' }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">

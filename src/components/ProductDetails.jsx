@@ -8,6 +8,14 @@ import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useProducts } from '../context/ProductContext';
 
+// Organic Ingredient Images
+import aloeVeraImg from '../assets/images/aloe_vera.jpg';
+import coconutImg from '../assets/images/coconut.jpg';
+import teaTreeImg from '../assets/images/tea_tree.jpg';
+import arganOilImg from '../assets/images/argan_oil.jpg';
+import keratinImg from '../assets/images/keratin.jpg';
+import biotinImg from '../assets/images/biotin.jpg';
+
 // Local floating bubbles for the image gallery visual
 const GalleryBubbles = ({ color }) => {
   const bubbles = Array.from({ length: 10 }, (_, i) => ({
@@ -173,23 +181,21 @@ const ProductDetails = ({ product }) => {
   };
 
   // Gallery Visual Map
-  const getBotanicalEmoji = (cat) => {
+  const getIngredientImage = (cat) => {
     switch (cat) {
-      case 'Hair Growth': return '🌿';
-      case 'Color Protection': return '💜';
-      case 'Anti-Dandruff': return '❄️';
-      case 'Curly Hair': return '🥥';
-      case 'Oily Hair': return '🖤';
-      case 'Dry Hair': return '💧';
-      default: return '🌹';
+      case 'Hair Growth': return biotinImg;
+      case 'Color Protection': return aloeVeraImg;
+      case 'Anti-Dandruff': return teaTreeImg;
+      case 'Curly Hair': return coconutImg;
+      case 'Oily Hair': return teaTreeImg;
+      case 'Dry Hair': return arganOilImg;
+      default: return keratinImg;
     }
   };
 
   const galleryItems = [
-    { label: 'Signature Blend', emoji: product.emoji, desc: 'Original bottle visual' },
-    { label: 'Active Botanical', emoji: getBotanicalEmoji(product.category), desc: 'Key botanical extracts' },
-    { label: 'Lotion Texture', emoji: '💧', desc: 'Silky smooth swatch' },
-    { label: 'Luxury Package', emoji: '🎁', desc: 'Premium gift boxing' },
+    { label: 'Product Bottle', type: 'image', value: product.image, desc: 'Original bottle visual' },
+    { label: 'Key Botanical', type: 'image', value: getIngredientImage(product.category), desc: 'Active botanical ingredient' },
   ];
 
   // Tab specifications
@@ -249,18 +255,20 @@ const ProductDetails = ({ product }) => {
     }
   };
 
-  const activeGlowColor = product.color.includes('amber') ? '#f59e0b' : 
-    product.color.includes('purple') ? '#7c3aed' : 
-    product.color.includes('green') ? '#10b981' : 
-    product.color.includes('teal') ? '#0d9488' : '#db2777';
+  const activeGlowColor = product.color.includes('emerald') ? '#10b981' :
+    product.color.includes('sage') ? '#a3b18a' :
+    product.color.includes('olive') ? '#606c38' :
+    product.color.includes('forest') ? '#28543f' :
+    product.color.includes('teal') ? '#14b8a6' :
+    product.color.includes('amber') ? '#f59e0b' : '#606c38';
 
   return (
-    <div className="min-h-screen pt-28 pb-20 relative bg-[#0a0014] text-white">
+    <div className="min-h-screen pt-28 pb-20 relative bg-[#05120d] text-white">
       {/* Background decoration */}
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{
-          backgroundImage: 'radial-gradient(circle at 30% 20%, rgba(124,58,237,0.06) 0%, transparent 50%), radial-gradient(circle at 80% 60%, rgba(219,39,119,0.05) 0%, transparent 50%)',
+          backgroundImage: 'radial-gradient(circle at 30% 20%, rgba(40,84,63,0.06) 0%, transparent 50%), radial-gradient(circle at 80% 60%, rgba(96,108,56,0.05) 0%, transparent 50%)',
         }}
       />
 
@@ -290,32 +298,49 @@ const ProductDetails = ({ product }) => {
                 boxShadow: `0 20px 50px rgba(0,0,0,0.5), inset 0 0 40px rgba(255,255,255,0.05)`,
               }}
             >
-              <GalleryBubbles color={activeGlowColor} />
+              {galleryItems[activeThumb].type !== 'video' && <GalleryBubbles color={activeGlowColor} />}
 
-              {/* Dynamic visual emoji centered */}
-              <AnimatePresence mode="wait">
-                <motion.div
+              {/* Dynamic visual or video player */}
+              {galleryItems[activeThumb].type === 'video' ? (
+                <video
                   key={activeThumb}
-                  className="text-[140px] md:text-[180px] z-10 relative select-none filter drop-shadow-[0_20px_50px_rgba(245,158,11,0.25)]"
-                  initial={{ opacity: 0, scale: 0.7, rotate: -20 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  exit={{ opacity: 0, scale: 0.7, rotate: 20 }}
-                  transition={{ type: 'spring', stiffness: 120, damping: 15 }}
-                >
-                  {galleryItems[activeThumb].emoji}
-                </motion.div>
-              </AnimatePresence>
+                  src={galleryItems[activeThumb].value}
+                  autoPlay
+                  muted
+                  controls
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover z-10 rounded-3xl"
+                  style={{
+                    boxShadow: `0 20px 50px rgba(0,0,0,0.5)`,
+                  }}
+                />
+              ) : (
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={activeThumb}
+                    src={galleryItems[activeThumb].value}
+                    alt={galleryItems[activeThumb].label}
+                    className="w-4/5 h-4/5 object-contain z-10 relative select-none rounded-2xl filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.4)]"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.4 }}
+                  />
+                </AnimatePresence>
+              )}
 
               {/* Shine Overlay sweep */}
-              <motion.div
-                className="absolute inset-0 z-20 pointer-events-none opacity-30"
-                style={{
-                  background: 'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%)',
-                  backgroundSize: '200% 100%',
-                }}
-                animate={{ backgroundPosition: ['-100% 0', '200% 0'] }}
-                transition={{ duration: 3, repeat: Infinity, repeatDelay: 1 }}
-              />
+              {galleryItems[activeThumb].type !== 'video' && (
+                <motion.div
+                  className="absolute inset-0 z-20 pointer-events-none opacity-30"
+                  style={{
+                    background: 'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%)',
+                    backgroundSize: '200% 100%',
+                  }}
+                  animate={{ backgroundPosition: ['-100% 0', '200% 0'] }}
+                  transition={{ duration: 3, repeat: Infinity, repeatDelay: 1 }}
+                />
+              )}
 
               {/* Active display badge indicator */}
               <div className="absolute bottom-4 left-4 z-20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 border border-white/10 text-white/70">
@@ -323,26 +348,24 @@ const ProductDetails = ({ product }) => {
               </div>
             </div>
 
-            {/* Thumbnail Navigation Row */}
-            <div className="grid grid-cols-4 gap-3">
+            {/* Thumbnail Navigation Row — 2 images only */}
+            <div className="grid grid-cols-2 gap-3">
               {galleryItems.map((item, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveThumb(idx)}
-                  className={`aspect-square rounded-2xl flex flex-col items-center justify-center relative overflow-hidden transition-all duration-300 border bg-gradient-to-br ${product.bgColor}`}
+                  className={`aspect-square rounded-2xl flex flex-col items-center justify-center relative overflow-hidden transition-all duration-300 border bg-[#05120d]`}
                   style={{
-                    borderColor: activeThumb === idx ? 'rgba(245,158,11,0.8)' : 'rgba(255,255,255,0.08)',
-                    boxShadow: activeThumb === idx ? '0 0 15px rgba(245,158,11,0.3)' : 'none',
+                    borderColor: activeThumb === idx ? 'rgba(163,177,138,0.8)' : 'rgba(255,255,255,0.08)',
+                    boxShadow: activeThumb === idx ? '0 0 15px rgba(163,177,138,0.3)' : 'none',
                     opacity: activeThumb === idx ? 1 : 0.6,
                   }}
                 >
+                  <img src={item.value} alt={item.label} className="w-full h-full object-contain p-2 rounded-xl z-0" />
+                  <span className="absolute bottom-1 left-0 right-0 text-center text-[9px] text-white/60 font-semibold z-10">{item.label}</span>
                   {activeThumb === idx && (
-                    <div className="absolute inset-0 bg-black/10 z-0 pointer-events-none" />
+                    <div className="absolute inset-0 bg-white/5 z-10 pointer-events-none border border-sage-400/30 rounded-2xl" />
                   )}
-                  <span className="text-3xl relative z-10 mb-1">{item.emoji}</span>
-                  <span className="text-[8px] font-bold text-center text-white/50 uppercase tracking-widest px-1 relative z-10 line-clamp-1">
-                    {item.label.split(' ')[0]}
-                  </span>
                 </button>
               ))}
             </div>
@@ -356,10 +379,10 @@ const ProductDetails = ({ product }) => {
                 <span
                   className="px-3 py-1 rounded-full text-xs font-bold text-white uppercase tracking-wider bg-gradient-to-r mb-4 inline-block shadow-md"
                   style={{
-                    background: product.badge === 'Sale' ? 'linear-gradient(135deg, #ef4444, #dc2626)' :
-                      product.badge === 'New' ? 'linear-gradient(135deg, #7c3aed, #db2777)' :
-                      product.badge === 'Luxury' ? 'linear-gradient(135deg, #f59e0b, #d97706)' :
-                      'linear-gradient(135deg, #db2777, #7c3aed)',
+                    background: product.badge === 'Sale' ? 'linear-gradient(135deg, #28543f, #588157)' :
+                      product.badge === 'New' ? 'linear-gradient(135deg, #87986c, #606c38)' :
+                      product.badge === 'Luxury' ? 'linear-gradient(135deg, #344e41, #1c3e30)' :
+                      'linear-gradient(135deg, #588157, #28543f)',
                   }}
                 >
                   ✦ {product.badge}
@@ -504,7 +527,7 @@ const ProductDetails = ({ product }) => {
                       <motion.div
                         layoutId="detailsTabBorder"
                         className="absolute bottom-0 left-0 right-0 h-0.5"
-                        style={{ background: 'linear-gradient(90deg, #f59e0b, #db2777)' }}
+                        style={{ background: 'linear-gradient(90deg, #a3b18a, #606c38)' }}
                       />
                     )}
                   </button>
@@ -778,23 +801,22 @@ const ProductDetails = ({ product }) => {
                   {/* Visual container */}
                   <div className={`h-40 flex items-center justify-center bg-gradient-to-br ${p.bgColor} relative overflow-hidden`}>
                     <div
-                      className="absolute w-24 h-24 rounded-full opacity-10 filter blur-lg"
+                      className="absolute w-24 h-24 rounded-full opacity-15 filter blur-lg"
                       style={{
                         background: `linear-gradient(135deg, ${
-                          p.color.includes('amber') ? '#f59e0b' : p.color.includes('purple') ? '#7c3aed' : '#db2777'
+                          p.color.includes('emerald') ? '#10b981' : p.color.includes('sage') ? '#a3b18a' : p.color.includes('olive') ? '#606c38' : p.color.includes('forest') ? '#28543f' : p.color.includes('teal') ? '#14b8a6' : '#28543f'
                         }, transparent)`
                       }}
                     />
-                    <motion.span
-                      className="text-6xl relative z-10 select-none"
+                    <motion.img
+                      src={p.image}
+                      alt={p.name}
+                      className="relative z-10 w-28 h-28 object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.4)]"
                       animate={{
-                        y: [0, -6, 0],
-                        rotate: [0, 2, -2, 0],
+                        y: [0, -5, 0],
                       }}
-                      transition={{ duration: 4, repeat: Infinity, delay: idx * 0.3 }}
-                    >
-                      {p.emoji}
-                    </motion.span>
+                      transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.25 }}
+                    />
                   </div>
 
                   {/* Metadata */}

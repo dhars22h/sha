@@ -32,9 +32,9 @@ const ReviewCard = ({ review, index }) => (
     <div
       className="inline-block px-3 py-1 rounded-full text-xs mb-4"
       style={{
-        background: 'rgba(245,158,11,0.1)',
-        border: '1px solid rgba(245,158,11,0.2)',
-        color: '#fbbf24',
+        background: 'rgba(163,177,138,0.1)',
+        border: '1px solid rgba(163,177,138,0.2)',
+        color: '#a3b18a',
       }}
     >
       {review.product}
@@ -42,11 +42,12 @@ const ReviewCard = ({ review, index }) => (
 
     {/* Reviewer */}
     <div className="flex items-center gap-3 border-t border-white/5 pt-4">
-      <div
-        className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white"
-        style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)' }}
-      >
-        {review.avatar}
+      <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden bg-emerald-950 border border-sage-500/30 flex-shrink-0">
+        {typeof review.avatar === 'string' && (review.avatar.startsWith('/') || review.avatar.includes('static') || review.avatar.startsWith('data:') || review.avatar.includes('http') || review.avatar.endsWith('.jpg') || review.avatar.endsWith('.png')) ? (
+          <img src={review.avatar} alt={review.name} className="w-full h-full object-cover" />
+        ) : (
+          <span className="text-sm font-bold text-white uppercase">{review.avatar}</span>
+        )}
       </div>
       <div>
         <p className="text-white font-semibold text-sm">{review.name}</p>
@@ -60,10 +61,10 @@ const ReviewCard = ({ review, index }) => (
 );
 
 const Reviews = () => (
-  <section className="py-24 relative overflow-hidden" style={{ background: 'rgba(10,0,20,0.95)' }}>
+  <section className="py-24 relative overflow-hidden" style={{ background: 'rgba(7,25,17,0.95)' }}>
     <div
       className="absolute inset-0 pointer-events-none"
-      style={{ backgroundImage: 'radial-gradient(circle at 50% 100%, rgba(124,58,237,0.08) 0%, transparent 60%)' }}
+      style={{ backgroundImage: 'radial-gradient(circle at 50% 100%, rgba(163,177,138,0.08) 0%, transparent 60%)' }}
     />
 
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -108,7 +109,7 @@ const Reviews = () => (
               <div className="w-32 h-1.5 rounded-full bg-white/10 overflow-hidden">
                 <motion.div
                   className="h-full rounded-full"
-                  style={{ background: 'linear-gradient(90deg, #f59e0b, #db2777)' }}
+                  style={{ background: 'linear-gradient(90deg, #a3b18a, #606c38)' }}
                   initial={{ width: 0 }}
                   whileInView={{ width: `${pct}%` }}
                   viewport={{ once: true }}

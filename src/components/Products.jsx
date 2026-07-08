@@ -16,11 +16,11 @@ const Products = () => {
     : products.filter(p => p.category === activeFilter);
 
   return (
-    <section className="py-24 relative" style={{ background: '#06000f' }}>
+    <section className="py-24 relative" style={{ background: '#071911' }}>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle at 80% 50%, rgba(219,39,119,0.06) 0%, transparent 60%), radial-gradient(circle at 20% 50%, rgba(124,58,237,0.06) 0%, transparent 60%)',
+          backgroundImage: 'radial-gradient(circle at 80% 50%, rgba(96,108,56,0.06) 0%, transparent 60%), radial-gradient(circle at 20% 50%, rgba(40,84,63,0.06) 0%, transparent 60%)',
         }}
       />
 
@@ -59,13 +59,13 @@ const Products = () => {
               className="px-5 py-2 rounded-full text-sm font-medium transition-all duration-300"
               style={{
                 background: activeFilter === filter
-                  ? 'linear-gradient(135deg, #7c3aed, #db2777)'
+                  ? 'linear-gradient(135deg, #28543f, #606c38)'
                   : 'rgba(255,255,255,0.05)',
                 border: activeFilter === filter
                   ? '1px solid transparent'
                   : '1px solid rgba(255,255,255,0.1)',
                 color: activeFilter === filter ? '#fff' : 'rgba(255,255,255,0.6)',
-                boxShadow: activeFilter === filter ? '0 0 20px rgba(124,58,237,0.4)' : 'none',
+                boxShadow: activeFilter === filter ? '0 0 20px rgba(40,84,63,0.4)' : 'none',
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
